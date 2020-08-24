@@ -197,12 +197,11 @@ set $bg_color 	        #1f1f1f
 set $bg_color_bar 	#383838    
 set $ac_bg_color        #81c995    
 set $textcolor          #F5F6F7 
-set $urgcolor  	        #fdd633    
-set $border 	        #f28b82          
-set $iac_bg_color       #f28b82    
-set $focus_color        #81c995    
+set $urgcolor  	        #fdd633              
+set $iac_bg_color       #81c995 
+set $focus_color        #f28b82
 #			Border		Background		text 		indicator
-client.focused		$border 	$border 	      $textcolor	$iac_bg_color
+client.focused		$iac_bg_color 	$iac_bg_color 	      $textcolor	$iac_bg_color
 client.unfocused 	$bg_color	$bg_color             $textcolor        $bg_color
 client.focused_inactive $focus_color	$focus_color          $textcolor        $focus_color
 client.urgent 		$urgcolor	$urgcolor	      $textcolor	$urgcolor
@@ -211,7 +210,7 @@ client.urgent 		$urgcolor	$urgcolor	      $textcolor	$urgcolor
 bar {
         
         position top
-        font pango:Noto Serif 14
+        font pango:Open Sans 14
         #status_command i3status
 	#position top
 	tray_output none
@@ -231,7 +230,7 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/wallhaven-mdjrqy.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpapers/arch.jpg
 exec_always picom -f
 exec bitwarden
 
@@ -257,7 +256,7 @@ exec xrandr --output eDP-1 --mode 1920x1080 --pos 0x1080 --rotate normal --outpu
 #My key Binds
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+x          exec terminator
-bindsym $mod+e          exec terminator -e ranger
+bindsym $mod+e          exec pcmanfm
 bindsym $mod+p          exec arandr
 bindsym $mod+Shift+b    exec chromium
 bindsym $mod+Shift+z    exec bitwarden
@@ -313,7 +312,7 @@ for_window [class="Lxappearance"] floating enable
 for_window [title="Notion*"] move to workspace $ws5
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
-for_window [class="Thunar"] floating enable resize 1024 720
+
 
 for_window [title="LMS*"] move to workspace $ws5
 for_window [title="VirtualBox"] tabbed enable
@@ -331,3 +330,4 @@ for_window [class="discord"] move to workspace $ws7
 for_window [class="VirtualBox Machine"] move to workspace $ws4
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws6
 for_window [class="mpv"] floating enable
+for_window [class="Pcmanfm"] floating enable resize 800 600
