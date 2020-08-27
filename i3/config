@@ -195,10 +195,10 @@ bindsym $mod+r mode "resize"
 #Window Colors:
 set $bg_color 	        #1f1f1f
 set $bg_color_bar 	#383838    
-set $ac_bg_color        #81c995    
+set $ac_bg_color        #1793D1    
 set $textcolor          #F5F6F7 
 set $urgcolor  	        #fdd633              
-set $iac_bg_color       #81c995 
+set $iac_bg_color       #1793D1 
 set $focus_color        #f28b82
 #			Border		Background		text 		indicator
 client.focused		$iac_bg_color 	$iac_bg_color 	      $textcolor	$iac_bg_color
@@ -230,7 +230,7 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/arch.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpapers/arch2.png
 exec_always picom -f
 exec bitwarden
 
@@ -331,3 +331,5 @@ for_window [class="VirtualBox Machine"] move to workspace $ws4
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws6
 for_window [class="mpv"] floating enable
 for_window [class="Pcmanfm"] floating enable resize 800 600
+
+
