@@ -193,8 +193,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #Window Colors:
-set $bg_color 	        #1f1f1f
-set $bg_color_bar 	#383838    
+set $bg_color 	        #FFF6FF
+set $bg_color_bar 	#303030    
 set $ac_bg_color        #1793D1    
 set $textcolor          #F5F6F7 
 set $urgcolor  	        #fdd633              
@@ -213,16 +213,19 @@ bar {
         font pango:Open Sans 14
         #status_command i3status
 	#position top
+        height 27
+        strip_workspace_numbers yes
+        workspace_min_width 40
 	tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	colors {
-                background      #303030
-                statusline      #F5F6F7
+                background      $bg_color_bar
+                statusline      #303030
                 separator       #F5F6F7
 	#		   Border 	  BG     	 Text
         focused_workspace  $iac_bg_color $iac_bg_color 	#ffffff
         active_workspace   $focus_color  $focus_color 	#ffffff
-        inactive_workspace $bg_color     $bg_color      #ffffff 
+        inactive_workspace $bg_color     $bg_color      #303030 
         urgent_workspace   $urgcolor 	 $urgcolor 	#000000
         binding_mode       $iac_bg_color $iac_bd_color 	#000000
      }
@@ -230,7 +233,7 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/arch2.png
+exec_always feh --bg-scale ~/Pictures/Wallpapers/wall.jpg
 exec_always picom -f
 exec bitwarden
 
@@ -263,6 +266,7 @@ bindsym $mod+Shift+z    exec bitwarden
 bindsym $mod+b          exec firefox
 bindsym $mod+v          exec virtualbox -style kvantum-dark U%
 bindsym $mod+Shift+x    exec spotify
+bindsym $mod2+Shift+v    exec "pcmanfm /mnt/Vault"
 bindsym $mod2+v         exec pavucontrol
 bindsym $mod2+n         exec --no-startup-id terminator -T "__nmtui" -e "nmtui"
 bindsym $mod2+b         exec blueberry
