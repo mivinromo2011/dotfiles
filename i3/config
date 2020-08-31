@@ -199,10 +199,10 @@ set $ac_bg_color        #1793D1
 set $textcolor          #F5F6F7 
 set $urgcolor  	        #fdd633              
 set $iac_bg_color       #1793D1 
-set $focus_color        #f28b82
+set $focus_color        #757575
 #			Border		Background		text 		indicator
 client.focused		$iac_bg_color 	$iac_bg_color 	      $textcolor	$iac_bg_color
-client.unfocused 	$bg_color	$bg_color             $textcolor        $bg_color
+client.unfocused 	#303030 	#303030               $textcolor        $bg_color
 client.focused_inactive $focus_color	$focus_color          $textcolor        $focus_color
 client.urgent 		$urgcolor	$urgcolor	      $textcolor	$urgcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -220,7 +220,7 @@ bar {
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	colors {
                 background      $bg_color_bar
-                statusline      #303030
+                statusline      $bg_color_bar
                 separator       #F5F6F7
 	#		   Border 	  BG     	 Text
         focused_workspace  $iac_bg_color $iac_bg_color 	#ffffff
@@ -233,7 +233,7 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/wall.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpapers/Post.jpg
 exec_always picom -f
 exec bitwarden
 
@@ -258,7 +258,7 @@ exec xrandr --output eDP-1 --mode 1920x1080 --pos 0x1080 --rotate normal --outpu
 
 #My key Binds
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec terminator
+bindsym $mod+x          exec termite
 bindsym $mod+e          exec pcmanfm
 bindsym $mod+p          exec arandr
 bindsym $mod+Shift+b    exec chromium
@@ -266,9 +266,9 @@ bindsym $mod+Shift+z    exec bitwarden
 bindsym $mod+b          exec firefox
 bindsym $mod+v          exec virtualbox -style kvantum-dark U%
 bindsym $mod+Shift+x    exec spotify
-bindsym $mod2+Shift+v    exec "pcmanfm /mnt/Vault"
+bindsym $mod2+Shift+v   exec "pcmanfm /mnt/Vault"
 bindsym $mod2+v         exec pavucontrol
-bindsym $mod2+n         exec --no-startup-id terminator -T "__nmtui" -e "nmtui"
+bindsym $mod2+n         exec --no-startup-id termite -e "nmtui"
 bindsym $mod2+b         exec blueberry
 bindsym $mod+c          exec code
 bindsym $mod2+c         exec "code .config/i3/config"
