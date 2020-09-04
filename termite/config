@@ -54,21 +54,21 @@ background = #303030
 #highlight = #839496
 
 # colors from color0 to color254 can be set
-color0 = #FFF6FF
-color1 = #FFF6FF
-color2 = #1793d1
-color3 = #303030
-color4 = #1793d1
-color5 = #c792ea
-color6 = #89ddff
-color7 = #1793d1
-color8 = #434758
-color9 = #ff8b92
-color10 = #ddffa7
-color11 = #ffe585
-color12 = #9cc4ff
-color13 = #e1acff
-color14 = #a3f7ff
+color0 = #3f3f3f
+color1 = #705050
+color2 = #60b48a
+color3 = #dfaf8f
+color4 = #506070
+color5 = #dc8cc3
+color6 = #8cd0d3
+color7 = #dcdccc
+color8 = #709080
+color9 = #dca3a3
+color10 = #c3bf9f
+color11 = #f0dfaf
+color12 = #94bff3
+color13 = #ec93d3
+color14 = #93e0e3
 color15 = #ffffff
 
 
