@@ -117,10 +117,13 @@ bindsym $mod+Tab focus mode_toggle
 # We use variables to avoid repeating the names in multiple places.
 #Screen1
 set $ws1 "1:  "
-set $ws2 "2:  "
+set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
-set $ws5 "5:  "
+set $ws5 "5:  "
+
+
+
 
 
 #Screen2
@@ -193,17 +196,17 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #Window Colors:
-set $bg_color 	        #FFF6FF
+set $bg_color 	        #dcdccc
 set $bg_color_bar 	#303030    
-set $ac_bg_color        #1793D1    
-set $textcolor          #F5F6F7 
-set $urgcolor  	        #fdd633              
-set $iac_bg_color       #1793D1 
-set $focus_color        #757575
+set $ac_bg_color        #506070    
+set $textcolor          #dcdccc
+set $urgcolor  	        #705050              
+set $iac_bg_color       #506070 
+
 #			Border		Background		text 		indicator
 client.focused		$iac_bg_color 	$iac_bg_color 	      $textcolor	$iac_bg_color
-client.unfocused 	#303030 	#303030               $textcolor        $bg_color
-client.focused_inactive $focus_color	$focus_color          $textcolor        $focus_color
+client.unfocused 	$bg_color 	$bg_color             $iac_bg_color     $bg_color
+client.focused_inactive $bg_color       $bg_color             $iac_bg_color     $iac_bg_color
 client.urgent 		$urgcolor	$urgcolor	      $textcolor	$urgcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -220,20 +223,20 @@ bar {
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	colors {
                 background      $bg_color_bar
-                statusline      $bg_color_bar
+                statusline      $iac_bg_color
                 separator       #F5F6F7
 	#		   Border 	  BG     	 Text
-        focused_workspace  $iac_bg_color $iac_bg_color 	#ffffff
-        active_workspace   $focus_color  $focus_color 	#ffffff
-        inactive_workspace $bg_color     $bg_color      #303030 
-        urgent_workspace   $urgcolor 	 $urgcolor 	#000000
-        binding_mode       $iac_bg_color $iac_bd_color 	#000000
+        focused_workspace  $iac_bg_color $iac_bg_color 	$bg_color
+        active_workspace   $bg_color     $bg_color 	$iac_bg_color
+        inactive_workspace $bg_color     $bg_color      $iac_bg_color
+        urgent_workspace   $urgcolor 	 $urgcolor 	$iac_bg_color
+        binding_mode       $iac_bg_color $iac_bd_color 	$iac_bg_color
      }
 }
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/arch5.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpapers/wally.jpg
 exec_always picom -f
 exec bitwarden
 
@@ -313,12 +316,12 @@ for_window [class="Galculator"] floating enable
 for_window [class="Pavucontrol"] floating enable resize 800 600
 for_window [class="feh"] floating enable 
 for_window [class="Lxappearance"] floating enable
-for_window [title="Notion*"] move to workspace $ws5
+for_window [title="Notion*"] move to workspace $ws2
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
 
 
-for_window [title="LMS*"] move to workspace $ws5
+for_window [title="LMS*"] move to workspace $ws2
 for_window [title="VirtualBox"] tabbed enable
 for_window [class="Uget-gtk"] floating enable resize 800 600
 for_window [class="Gucharmap"] floating enable resize 800 600
@@ -332,7 +335,7 @@ for_window [class="Spotify"] move to workspace $ws10
 for_window [class="VirtualBox Manager"] move to workspace $ws4
 for_window [class="discord"] move to workspace $ws7
 for_window [class="VirtualBox Machine"] move to workspace $ws4
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws6
+#for_window [class="Microsoft Teams - Preview"] move to workspace $ws6
 for_window [class="mpv"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 
