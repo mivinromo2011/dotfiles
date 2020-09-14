@@ -116,7 +116,7 @@ bindsym $mod+Tab focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #Screen1
-set $ws1 "1:  "
+set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
@@ -196,12 +196,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #Window Colors:
-set $bg_color 	        #dcdccc
+set $bg_color 	        #ffffff
 set $bg_color_bar 	#303030    
-set $ac_bg_color        #506070    
-set $textcolor          #dcdccc
-set $urgcolor  	        #705050              
-set $iac_bg_color       #506070 
+set $ac_bg_color        #1a8cff  
+set $textcolor          #ffffff
+set $urgcolor  	        #60b48a              
+set $iac_bg_color       #1a8cff
 
 #			Border		Background		text 		indicator
 client.focused		$iac_bg_color 	$iac_bg_color 	      $textcolor	$iac_bg_color
@@ -236,7 +236,7 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/wally.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpapers/19737.jpg
 exec_always picom -f
 exec bitwarden
 
@@ -248,14 +248,14 @@ Workspace $ws3 output Primary
 workspace $ws4 output Primary
 Workspace $ws5 output Primary
  
-workspace $ws6 output eDP-1
-workspace $ws7 output eDP-1
-workspace $ws8 output eDP-1
-workspace $ws9 output eDP-1
-workspace $ws10 output eDP-1
+workspace $ws6 output eDP1
+workspace $ws7 output eDP1
+workspace $ws8 output eDP1
+workspace $ws9 output eDP1
+workspace $ws10 output eDP1
 
 # screen setup
-exec xrandr --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+exec xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --rotate normal --output DP-1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
 
 
@@ -266,7 +266,7 @@ bindsym $mod+e          exec pcmanfm
 bindsym $mod+p          exec arandr
 bindsym $mod+Shift+b    exec chromium
 bindsym $mod+Shift+z    exec bitwarden
-bindsym $mod+b          exec firefox
+bindsym $mod+b          exec brave
 bindsym $mod+v          exec virtualbox -style kvantum-dark U%
 bindsym $mod+Shift+x    exec spotify
 bindsym $mod2+Shift+v   exec "pcmanfm /mnt/Vault"
@@ -284,8 +284,8 @@ bindsym $mod+Ctrl+1 move workspace to output HDMI1
 bindsym $mod+Ctrl+2 move workspace to output eDP1
 
 # Sreen brightness controls
-bindsym $mod2+Ctrl+w exec xbacklight -inc 5 # increase screen brightness
-bindsym $mod2+Ctrl+s exec xbacklight -dec 5 # decrease screen brightness
+bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10
+bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10
 
 #gaps
 bindsym $mod+i			gaps inner current plus 5
@@ -335,7 +335,6 @@ for_window [class="Spotify"] move to workspace $ws10
 for_window [class="VirtualBox Manager"] move to workspace $ws4
 for_window [class="discord"] move to workspace $ws7
 for_window [class="VirtualBox Machine"] move to workspace $ws4
-#for_window [class="Microsoft Teams - Preview"] move to workspace $ws6
 for_window [class="mpv"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 
