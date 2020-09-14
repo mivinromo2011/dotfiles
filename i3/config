@@ -226,11 +226,11 @@ bar {
                 statusline      $iac_bg_color
                 separator       #F5F6F7
 	#		   Border 	  BG     	 Text
-        focused_workspace  $iac_bg_color $iac_bg_color 	$bg_color
-        active_workspace   $bg_color     $bg_color 	$iac_bg_color
-        inactive_workspace $bg_color     $bg_color      $iac_bg_color
-        urgent_workspace   $urgcolor 	 $urgcolor 	$iac_bg_color
-        binding_mode       $iac_bg_color $iac_bd_color 	$iac_bg_color
+        focused_workspace  $bg_color_bar $bg_color 	$iac_bg_color
+        active_workspace   $bg_color     $bg_color_bar 	$bg_color
+        inactive_workspace $bg_color_bar $bg_color_bar  $bg_color
+        urgent_workspace   $bg_color_bar $urgcolor 	$bg_color
+        binding_mode       $bg_color_bar $iac_bd_color 	$iac_bg_color
      }
 }
 
