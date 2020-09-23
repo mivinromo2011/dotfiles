@@ -17,8 +17,8 @@ font pango:Open Sans 13
 
 #gaps
 set $inner_gaps 7
-set $outer_gaps 5
-for_window [class="^.*"] border pixel 2
+set $outer_gaps 7
+for_window [class="^.*"] border pixel 0
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
@@ -196,10 +196,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #Window Colors:
-set $bg_color 	        #ffffff
-set $bg_color_bar 	#303030  
-set $urgcolor  	        #60b48a              
-set $iac_bg_color       #1a8cff
+set $bg_color 	        #cfd8dc
+set $bg_color_bar 	#263238  
+set $urgcolor  	        #009688             
+set $iac_bg_color       #03a9f4
 
 #			Border		Background		text 		indicator
 client.focused		$iac_bg_color 	$iac_bg_color 	      $bg_color 	$iac_bg_color
@@ -221,22 +221,26 @@ bar {
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	colors {
                 background      $bg_color_bar
-                statusline      $iac_bg_color
-                separator       #F5F6F7
+                statusline      $bg_color
+                separator       $bg_color
 	#		   Border 	  BG     	 Text
-        focused_workspace  $iac_bg_color $bg_color 	$iac_bg_color
-        active_workspace   $bg_color_bar $bg_color 	$bg_color_bar
+        focused_workspace  $bg_color_bar $urgcolor	$bg_color
+        active_workspace   $bg_color_bar $bg_color 	$urgcolor
         inactive_workspace $bg_color_bar $bg_color_bar  $bg_color
         urgent_workspace   $bg_color_bar $urgcolor 	$bg_color
-        binding_mode       $bg_color_bar $iac_bd_color 	$iac_bg_color
+        binding_mode       $bg_color_bar $urgcolor 	$bg_color
      }
 }
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Pictures/Wallpapers/19737.jpg
+exec_always feh --bg-scale ~/Setup/Wallpapers/space.png
 exec_always picom -f
 exec bitwarden
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id i3-msg 'workspace $ws1; exec brave'
+exec --no-startup-id i3-msg 'workspace $ws6; exec brave notion.so'
+
 
 
 #Assigning workspaces to screens
@@ -310,31 +314,36 @@ bindsym $mod2+d exec playerctl next
 bindsym $mod2+a exec playerctl previous 
 
 #window rules
+
 for_window [class="Galculator"] floating enable
 for_window [class="Pavucontrol"] floating enable resize 800 600
 for_window [class="feh"] floating enable 
 for_window [class="Lxappearance"] floating enable
-for_window [title="Notion*"] move to workspace $ws6
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
-
-
-for_window [title="LMS*"] move to workspace $ws6
-for_window [title="VirtualBox"] tabbed enable
 for_window [class="Uget-gtk"] floating enable resize 800 600
 for_window [class="Gucharmap"] floating enable resize 800 600
 for_window [class="Arandr"] floating enable resize 800 600
 for_window [class="Nm-connection-editor"] floating enable resize 226 126
 for_window [class="Blueberry"] floating enable resize 226 126
-for_window [class="code-oss"] move to workspace $ws3
-for_window [class="Bitwarden"] move to workspace $ws9
-for_window [class="TelegramDesktop"] move to workspace $ws7
-for_window [class="Spotify"] move to workspace $ws10
-for_window [class="VirtualBox Manager"] move to workspace $ws4
-for_window [class="discord"] move to workspace $ws7
-for_window [class="VirtualBox Machine"] move to workspace $ws4
 for_window [class="mpv"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="VirtualBox"] tabbed enable
+
+
+#Workspace rules
+
+for_window [class="VirtualBox Manager"] move to workspace $ws4
+for_window [class="VirtualBox Machine"] move to workspace $ws4
+for_window [class="discord"] move to workspace $ws7
+for_window [class="code-oss"] move to workspace $ws3
+for_window [title="LMS*"] move to workspace $ws6
+for_window [title="Notion*"] move to workspace $ws6
+for_window [class="TelegramDesktop"] move to workspace $ws7
+for_window [class="Bitwarden"] move to workspace $ws9
+for_window [class="Spotify"] move to workspace $ws10
+
+
 
 
 
