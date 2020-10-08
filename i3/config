@@ -116,7 +116,7 @@ bindsym $mod+Tab focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #Screen1
-set $ws1 "1:  "
+set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
@@ -194,10 +194,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #Window Colors:
-set $bg_color 	        #cfd8dc
-set $bg_color_bar 	#263238  
-set $urgcolor  	        #009688             
-set $iac_bg_color       #03a9f4
+set $bg_color 	        #d8dee9
+set $bg_color_bar 	#2e3440  
+set $urgcolor  	        #bf616a           
+set $iac_bg_color       #a3be8c
 
 #			Border		Background		text 		indicator
 client.focused		$urgcolor 	$urgcolor	      $bg_color 	$iac_bg_color
@@ -209,7 +209,7 @@ client.urgent 		$urgcolor	$urgcolor	      $bg_color 	$urgcolor
 bar {
         
         position top
-        font pango:MesloLGS NF 14
+        font pango:Source Code Pro Regular 14
         #status_command i3status
 	#position top
         height 27
@@ -232,12 +232,16 @@ bar {
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Setup/Wallpapers/space.png
+exec_always feh --bg-scale ~/setup/Wallpapers/19737.jpg
 exec_always picom -f
 exec bitwarden
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id i3-msg 'workspace $ws1; exec firefox'
-exec --no-startup-id i3-msg 'workspace $ws6; exec firefox notion.so'
+exec --no-startup-id i3-msg 'workspace $ws6; exec chromium notion.so'
+exec --no-startup-id i3-msg 'workspace $ws7; exec firefox https://web.whatsapp.com/'
+
+#onedrive mount
+exec rclone --vfs-cache-mode writes mount "College-Ondrive":  ~/College
 
 
 
@@ -256,8 +260,7 @@ workspace $ws10 output eDP1
 workspace $ws11 output eDP1
 
 # screen setup
-exec xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --rotate normal --output DP-1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-
+exec xrandr --output eDP1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
 
 #My key Binds
