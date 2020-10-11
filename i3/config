@@ -139,7 +139,7 @@ bindsym $mod2+Shift+5 move container to workspace number $ws10
 
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Ctrl+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -218,7 +218,7 @@ exec termite
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id i3-msg 'workspace $ws1; exec firefox'
 exec --no-startup-id i3-msg 'workspace $ws6; exec chromium notion.so'
-exec --no-startup-id i3-msg 'workspace $ws7; exec chromium web.whatsapp.com/'
+
 
 #onedrive mount
 exec rclone --vfs-cache-mode writes mount "College-Ondrive":  ~/College
@@ -259,7 +259,9 @@ bindsym $mod2+v         exec pavucontrol
 bindsym $mod2+n         exec --no-startup-id termite -e "nmtui"
 bindsym $mod2+b         exec blueberry
 bindsym $mod+c          exec code
-bindsym $mod2+c         exec "code .config/i3/config"
+bindsym $mod+Shift+c    exec "code .config/i3/config"
+bindsym $mod2+c         [class="TelegramDesktop"] scratchpad show
+bindsym $mod2+Shift+b   [title="WhatsApp*"] scratchpad show
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
