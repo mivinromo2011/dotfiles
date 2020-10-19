@@ -36,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start rofi
-bindsym $mod2+e exec "rofi -show drun -lines 7 -eh 2 -bw 2 -font 'MesloLGS NF 13' -icon-theme 'Arc' -show-icons"
+bindsym $mod2+e exec "rofi -show drun -lines 7 -eh 2 -bw 2 -font 'MesloLGS NF 13' -icon-theme 'Papirus' -show-icons"
 
 # change focus
 bindsym $mod+a focus left
@@ -182,8 +182,8 @@ set $iac_bg_color       #a3be8c
 
 #			Border		Background		text 		indicator
 client.focused		$urgcolor 	$urgcolor	      $bg_color 	$iac_bg_color
-client.unfocused 	$bg_color 	$bg_color             $urgcolor         $bg_color
-client.focused_inactive $bg_color       $bg_color             $urgcolor         $iac_bg_color
+client.unfocused 	$bg_color	$bg_color_bar         $urgcolor         $bg_color
+client.focused_inactive $bg_color       $bg_color_bar         $urgcolor         $iac_bg_color
 client.urgent 		$urgcolor	$urgcolor	      $bg_color 	$urgcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -216,7 +216,7 @@ bar {
 exec_always feh --bg-scale ~/Vault/setup/Wallpapers/arc.png
 exec_always picom -f
 exec bitwarden
-exec termite 
+exec termite ; move scratchpad 
 exec notion-app
 exec pavucontrol
 exec blueberry
@@ -235,7 +235,7 @@ workspace $ws1 output Primary
 workspace $ws2 output Primary
 Workspace $ws3 output Primary
 workspace $ws4 output Primary
-Workspace $ws5 output Primary
+workspace $ws5 output Primary
  
 workspace $ws6 output eDP1
 workspace $ws7 output eDP1
@@ -329,7 +329,7 @@ for_window [class="code-oss"] move to workspace $ws2
 for_window [class="Bitwarden"] move scratchpad
 for_window [class="Spotify"] move to workspace $ws7
 for_window [class="Transmission"] move to workspace $ws8
-for_window [class="Termite"] move scratchpad
+#for_window [class="Termite"] move scratchpad
 for_window [class="TelegramDesktop"] move scratchpad 
 for_window [class="Notion"] move to workspace $ws4
 for_window [class="Blueberry"] move to workspace $ws8
