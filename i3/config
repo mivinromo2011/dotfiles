@@ -91,21 +91,21 @@ bindsym $mod+Tab focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #Screen1
-set $ws1 " 1 "
-set $ws2 " 2 "
-set $ws3 " 3 "
-set $ws4 " 4 "
-set $ws5 " 5 "    
-set $ws6 " 6 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"    
+set $ws6 "6"
 
 
 
 #Screen2
-set $ws7 " 7 "
-set $ws8 " 8 "
-set $ws9 " 9 "
-set $ws10 " 10 "
-set $ws11 " 11 "
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
 
 
 
@@ -219,9 +219,9 @@ exec notion-app
 exec pavucontrol
 exec blueberry
 exec arandr
-exec transmission
+exec transmission-gtk
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id "i3-msg 'workspace 8; append_layout /home/hashdevil/.config/i3/panel.json'"
+exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/hashdevil/.config/i3/panel.json'"
 
 
 #onedrive mount
@@ -324,6 +324,7 @@ for_window [class="Notion"] move to workspace $ws2
 for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
 for_window [class="code-oss"] move to workspace $ws4
+for_window [class="Electron"] move to workspace $ws4
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws7
 for_window [title="Microsoft Teams Notification"] move to workspace $ws7
 for_window [class="Blueberry"] move to workspace $ws9
