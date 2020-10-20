@@ -1,0 +1,11 @@
+
+xmonad.hs:5:1: error:
+    Could not find module `XMonad.Hooks.Manage'
+    Perhaps you meant
+      XMonad.Hooks.Place (from xmonad-contrib-0.16)
+      XMonad.Hooks.ManageDebug (from xmonad-contrib-0.16)
+      XMonad.Hooks.ManageDocks (from xmonad-contrib-0.16)
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+5 | import XMonad.Hooks.Manage
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
