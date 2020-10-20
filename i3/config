@@ -220,6 +220,7 @@ exec pavucontrol
 exec blueberry
 exec arandr
 exec transmission-gtk
+exec --no-startup-id termite -e "nmtui"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/hashdevil/.config/i3/panel.json'"
 
@@ -331,9 +332,11 @@ for_window [class="Blueberry"] move to workspace $ws9
 for_window [class="Arandr"] move to workspace $ws9
 for_window [class="Pavucontrol"] move to workspace $ws9
 for_window [class="Transmission"] move to workspace $ws9
+for_window [title="nmtui"] move to workspace $ws9
 for_window [class="discord"] move to workspace $ws10
 for_window [class="obs"] move to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws11
+for_window [title=" BashTOP"] move
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
