@@ -10,7 +10,7 @@
        "y": 0
     },
     "name": "Volume Control",
-    "percent": 0.333333333333333,
+    "percent": 0.5,
     "swallows": [
        {
         "class": "^Pavucontrol$",
@@ -22,33 +22,11 @@
 }
 
 {
-    "border": "pixel",
-    "current_border_width": 2,
-    "floating": "auto_off",
-    "geometry": {
-       "height": 602,
-       "width": 894,
-       "x": 0,
-       "y": 0
-    },
-    "name": "nmtui",
-    "percent": 0.333333333333333,
-    "swallows": [
-       {
-        "class": "^Termite$",
-        "instance": "^termite$",
-        "title": "^nmtui$"
-       }
-    ],
-    "type": "con"
-}
-
-{
     // splitv split container with 2 children
     "border": "pixel",
     "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.333333333333333,
+    "percent": 0.5,
     "type": "con",
     "nodes": [
         {

@@ -19,7 +19,7 @@ bindsym $mod2+Tab exec rofi -show window -lines 7 -eh 2 -bw 2 -font "Hack 16" -s
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Use pactl to adjust volume in PulseAudio.
+# Use pactl to adjust volume in PulseAudio. 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
@@ -180,10 +180,12 @@ set $bg_color_bar 	#2e3440
 set $urgcolor  	        #bf616a           
 set $iac_bg_color       #a3be8c
 
+
+
 #			Border		Background		text 		indicator
 client.focused		$urgcolor 	$urgcolor	      $bg_color 	$iac_bg_color
-client.unfocused 	$bg_color	$bg_color_bar         $urgcolor         $bg_color
-client.focused_inactive $bg_color       $bg_color_bar         $urgcolor         $iac_bg_color
+client.unfocused 	$bg_color_bar	$bg_color_bar         $urgcolor         $bg_color
+client.focused_inactive $bg_color_bar   $bg_color_bar         $urgcolor         $iac_bg_color
 client.urgent 		$urgcolor	$urgcolor	      $bg_color 	$urgcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -198,21 +200,21 @@ bar {
 	tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	colors {
-                background      $bg_color_bar
+                background      #434c5e
                 statusline      $bg_color
                 separator       $bg_color
 	#		   Border 	  BG     	 Text
-        focused_workspace  $bg_color_bar $bg_color_bar	$urgcolor
+        focused_workspace  $bg_color_bar $urgcolor	$bg_color
         active_workspace   $bg_color_bar $bg_color_bar 	$bg_color
         inactive_workspace $bg_color_bar $bg_color_bar  $bg_color
         urgent_workspace   $bg_color_bar $bg_color_bar 	$bg_color
-        binding_mode       $bg_color_bar $urgcolor 	$bg_color
+        binding_mode       $bg_color_bar $bg_color_bar 	$bg_color
      }
 }
 
 
 #AutoStart Programs
-exec_always feh --bg-scale ~/Vault/setup/Wallpapers/arc.png
+exec_always feh --bg-fill ~/Vault/setup/Wallpapers/wall2.jpg
 exec_always picom -f
 exec bitwarden 
 exec notion-app
@@ -220,7 +222,6 @@ exec pavucontrol
 exec blueberry
 exec arandr
 exec transmission-gtk
-exec --no-startup-id termite -e "nmtui"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/hashdevil/.config/i3/panel.json'"
 
@@ -245,7 +246,7 @@ workspace $ws11 output eDP1
 
 
 # screen setup
-exec xrandr --output eDP1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+exec_always xrandr --output eDP1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
 
 #My key Binds
@@ -319,6 +320,7 @@ for_window [title="VirtualBox"] tabbed enable
 for_window [title="Windows - Soft Keyboard"] floating enable
 for_window [title=" BashTOP"] floating enable
 for_window [title="Polkit-gnome-authentication-agent-1"] floating enable resize 226 126
+for_window [title="Library"] floating enable
 
 #Workspace rules
 for_window [class="Notion"] move to workspace $ws2
@@ -336,7 +338,7 @@ for_window [title="nmtui"] move to workspace $ws9
 for_window [class="discord"] move to workspace $ws10
 for_window [class="obs"] move to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws11
-for_window [title=" BashTOP"] move
+
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
