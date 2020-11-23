@@ -1,0 +1,52 @@
+separator=true
+separator_block_width=15
+
+[diskHome]
+label= ﳐ 
+command=df -h | grep sda1 |awk '{print $4,$3,""}'
+interval=once
+color=#da4939
+
+[diskroot]
+label=  
+command=df -h | grep sdb2 |awk '{print $4,$3,""}'
+interval=once
+color=#f92672
+
+
+[ram]
+command=free -mh | grep Mem | awk '{print $3,$7,""}' | tr -d i
+interval=5
+color=#6d9cbe
+label=  
+
+[date]
+command=date +%d-%m-%Y" "
+interval=once
+color=#f9f8f5
+label=  
+
+[wifi]
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | cut -d" " -f1
+interval=5
+color=#a5c261
+label=  
+
+[volume]
+command=amixer sget Master | grep Left: | cut -d" " -f7 | tr -d "[" | tr -d "]"
+interval=1
+label= 墳 
+color=#ffffff
+
+[battery]
+command=acpi -b | grep -E -o '[0-9][0-9]?%'
+interval=30
+color=#ffc66d
+label=  
+
+[time]
+command=date +%R" "
+interval=1
+color=#b6b3eb
+label=  
+

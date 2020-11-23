@@ -258,7 +258,6 @@ bindsym $mod+Shift+b    exec chromium
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
 bindsym $mod+b          exec firefox
 bindsym $mod+v          exec virtualbox -style kvantum-dark U%
-bindsym $mod+Shift+x    exec spotify
 bindsym $mod+m          exec --no-startup-id termite -e "bashtop"
 bindsym $mod+n          exec notion-app
 bindsym $mod+c          exec code
@@ -267,7 +266,7 @@ bindsym $mod2+Shift+v   exec "pcmanfm /home/mivin/Vault"
 bindsym $mod2+v         exec pavucontrol
 bindsym $mod2+n         exec --no-startup-id termite -e "nmtui"
 bindsym $mod2+b         exec blueberry
-bindsym $mod+Shift+c    exec "code .config/i3/config"
+bindsym $mod+Shift+c    exec "subl .config/i3/config"
 bindsym $mod2+c         [class="TelegramDesktop"] scratchpad show
 bindsym $mod2+Shift+b   [title="WhatsApp*"] scratchpad show
 bindsym $mod2+x         [class="Termite"] scratchpad show
