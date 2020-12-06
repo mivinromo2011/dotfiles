@@ -238,7 +238,7 @@ bindsym $mod+Shift+x    exec spotify
 
 bindsym $mod2+v         exec pavucontrol
 bindsym $mod2+b         exec blueberry
-bindsym $mod2+p         [class="Arandr"] scratchpad show
+bindsym $mod2+p         exec arandr
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
@@ -271,7 +271,7 @@ bindsym $mod+Ctrl+2 move workspace to output eDP1
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
 for_window [class="Bitwarden"] move scratchpad
-for_window [class="Arandr"] move scratchpad
+
 
 #window rules
 for_window [class="Galculator"] floating enable
