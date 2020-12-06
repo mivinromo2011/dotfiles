@@ -211,7 +211,7 @@ bar {
 #AutoStart
 exec picom -f
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always feh --bg-fill ~/setup/Wallpapers/wallmy.jpg
+exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
 exec blueberry
@@ -284,5 +284,6 @@ for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="VirtualBox"] tabbed enable
 for_window [title="Windows - Soft Keyboard"] floating enable
 for_window [title=" BashTOP"] floating enable
-for_window [title="Nm-connection-editor"] floating enable
+for_window [title="Nitrogen"] floating enable
+
 
