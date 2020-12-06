@@ -215,7 +215,6 @@ exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
 exec blueberry
-exec arandr
 exec transmission-gtk
 exec brave
 exec firefox
