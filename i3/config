@@ -247,8 +247,8 @@ bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10
 bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10
 
 #Screen off
-bindsym $mod2+i exec xset -dpms
-bindsym $mod2+Shift+i exec xset +dpms
+bindsym $mod2+i exec xset -dpms && pkill -RTMIN+12 i3blocks
+bindsym $mod2+Shift+i exec xset +dpms && pkill -RTMIN+12 i3blocks
 
 #audio
 bindsym $mod2+w                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
