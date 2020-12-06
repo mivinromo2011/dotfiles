@@ -93,7 +93,7 @@ set $ws10 " 10 "
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
+bindsym $mod+3 workspace number $ws3 ; layout tabbed
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod2+1 workspace number $ws6
@@ -105,7 +105,7 @@ bindsym $mod2+5 workspace number $ws10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2 ; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3
+bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; layout tabbed
 bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
 bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
