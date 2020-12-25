@@ -8,6 +8,7 @@ set $outer_gaps 7
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 default_border pixel 0
+default_floating_border normal
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
@@ -25,8 +26,10 @@ bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10
 floating_modifier $mod
 bindsym $mod+q kill
 
-# start dmenu
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'sans-14'
+# start rofi-menu
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod2+Tab exec --no-startup-id rofi -show window
+bindsym $mod2+e exec --no-startup-id rofi -show file-browser
 
 # change focus
 bindsym $mod+j focus left
@@ -79,16 +82,23 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Workspaces
-set $ws1 " 1 "
-set $ws2 " 2 "
-set $ws3 " 3 "
-set $ws4 " 4 "
-set $ws5 " 5 "
-set $ws6 " 6 "
-set $ws7 " 7 "
-set $ws8 " 8 "
-set $ws9 " 9 "
-set $ws10 " 10 "
+set $ws1 "1:  Firefox"
+set $ws2 "2:  Notion"
+set $ws3 "3:  VirtualBox"
+set $ws4 "4:  Brave"
+set $ws5 "5:  Code"
+set $ws6 "6:  Work"
+set $ws7 "7:  Teams"
+set $ws8 "8:  Stream"
+set $ws9 "9:  Panel"
+set $ws10 "10:  Music"
+set $ws11 "11:  RSS"
+set $ws12 "12:  Watch"
+set $ws20 "20:  WS1"
+set $ws21 "21:  WS2"
+set $ws22 "22:  WS3"
+set $ws23 "23:  WS4"
+set $ws24 "24:  WS5"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -96,11 +106,18 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3 ; layout tabbed
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws20
+bindsym $mod+7 workspace number $ws21
+bindsym $mod+8 workspace number $ws22
+bindsym $mod+9 workspace number $ws23
+bindsym $mod+0 workspace number $ws24
 bindsym $mod2+1 workspace number $ws6
 bindsym $mod2+2 workspace number $ws7 
 bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
+bindsym $mod2+6 workspace number $ws11
+bindsym $mod2+7 workspace number $ws12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
@@ -108,25 +125,34 @@ bindsym $mod+Shift+2 move container to workspace number $ws2 ; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; layout tabbed
 bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws20 ; workspace $ws20
+bindsym $mod+Shift+7 move container to workspace number $ws21 ; workspace $ws21
+bindsym $mod+Shift+8 move container to workspace number $ws22 ; workspace $ws22
+bindsym $mod+Shift+9 move container to workspace number $ws23 ; workspace $ws23
+bindsym $mod+Shift+0 move container to workspace number $ws24 ; workspace $ws24
 bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
 bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
 bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
+bindsym $mod2+Shift+6 move container to workspace number $ws11 ; workspace $ws11
+bindsym $mod2+Shift+7 move container to workspace number $ws12 ; workspace $ws12
 
 #Assigning workspaces to screens
-workspace $ws1 output Primary
-workspace $ws2 output Primary
-workspace $ws3 output Primary
-workspace $ws4 output Primary
-workspace $ws5 output Primary
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
 
 workspace $ws7 output eDP1
 workspace $ws8 output eDP1
 workspace $ws9 output eDP1
 workspace $ws10 output eDP1
+workspace $ws11 output eDP1
 
 #Workspace rules
+for_window [class="firefox"] move to workspace $ws1
 for_window [class="Notion"] move to workspace $ws2
 for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
@@ -140,6 +166,10 @@ for_window [class="Blueberry"] move to workspace $ws9
 for_window [class="Pavucontrol"] move to workspace $ws9
 for_window [class="Transmission"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
+for_window [class="RSS Guard"] move to workspace $ws11
+for_window [class="Popcorn-Time"] move to workspace $ws12
+for_window [class="firefoxdeveloperedition"] move to workspace $ws20
+
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -176,7 +206,7 @@ set $c3         #3584e4
 
 
 #					   Border	Background    text		indicator
-client.focused			       $c3		  $c2	      	$c1     	$c2
+client.focused			       $c2		  $c3	      	$c2     	$c2
 client.unfocused 		     $c2		$c2           $c1             $c2
 client.focused_inactive           $c2   	     $c2           $c1             $c2
 client.urgent 			        $c3		   $c3	      	 $c2 		 $c2
@@ -190,34 +220,37 @@ bar {
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_output none
         strip_workspace_numbers yes
-        workspace_min_width 30
+        workspace_min_width 80
         height 27
         colors{
                 background           $c2
                 separator               $c1
-                statusline               $c2
+                statusline               $c1
 
                 #		   			           Border      	   BG     	Text
         		focused_workspace             $c2	  	$c3	     $c2		 
         		active_workspace          	$c2	          $c2	       $c3	
         		inactive_workspace 	       $c2		 $c2	      $c1
         		urgent_workspace   	       $c2		 $c3	      $c2
-        		binding_mode       	          $c2		    $c3		 $c2
+        		binding_mode       	          $c2		    $c2		 $c2
 
         }       
 }
 
 
 #AutoStart
-exec picom -f
+exec_always autorandr -c
+exec picom -f --config ~/.config/picom/picom.conf
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
 exec blueberry
 exec transmission-gtk
-exec brave
 exec firefox
+exec brave
+exec rssguard
+exec notion-app
 
 #onedrive mount
 exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
@@ -278,11 +311,10 @@ for_window [class="feh"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
+for_window [class="Pcmanfm"] floating enable resize 800 600
 for_window [class="mpv"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="VirtualBox"] tabbed enable
 for_window [title="Windows - Soft Keyboard"] floating enable
 for_window [title=" BashTOP"] floating enable
 for_window [title="Nitrogen"] floating enable
-
-
