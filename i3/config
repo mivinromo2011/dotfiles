@@ -20,8 +20,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 
 #Brightness
-bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
 
 floating_modifier $mod
 bindsym $mod+q kill
@@ -87,18 +87,18 @@ set $ws2 "2:  Notion"
 set $ws3 "3:  VirtualBox"
 set $ws4 "4:  Brave"
 set $ws5 "5:  Code"
-set $ws6 "6:  Work"
-set $ws7 "7:  Teams"
-set $ws8 "8:  Stream"
-set $ws9 "9:  Panel"
-set $ws10 "10:  Music"
-set $ws11 "11:  RSS"
-set $ws12 "12:  Watch"
-set $ws20 "20:  WS1"
-set $ws21 "21:  WS2"
-set $ws22 "22:  WS3"
-set $ws23 "23:  WS4"
-set $ws24 "24:  WS5"
+set $ws6 "6:  WS1"
+set $ws7 "7:  WS2"
+set $ws8 "8:  WS3"
+set $ws9 "9:  WS4"
+set $ws10 "10:  WS5"
+set $ws11 "11:  Work"
+set $ws12 "12:  Teams"
+set $ws13 "13:  Stream"
+set $ws14 "14:  |  Panel"
+set $ws15 "15:  Music"
+set $ws16 "16:  News"
+set $ws17 "17:  Watch"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -106,18 +106,18 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3 ; layout tabbed
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws20
-bindsym $mod+7 workspace number $ws21
-bindsym $mod+8 workspace number $ws22
-bindsym $mod+9 workspace number $ws23
-bindsym $mod+0 workspace number $ws24
 bindsym $mod2+1 workspace number $ws6
-bindsym $mod2+2 workspace number $ws7 
+bindsym $mod2+2 workspace number $ws7
 bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
-bindsym $mod2+6 workspace number $ws11
-bindsym $mod2+7 workspace number $ws12
+bindsym $mod2+6 workspace number $ws16
+bindsym $mod2+7 workspace number $ws17
+bindsym $mod+6 workspace number $ws11
+bindsym $mod+7 workspace number $ws12
+bindsym $mod+8 workspace number $ws13 ; layout tabbed
+bindsym $mod+9 workspace number $ws14
+bindsym $mod+0 workspace number $ws15
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
@@ -125,18 +125,18 @@ bindsym $mod+Shift+2 move container to workspace number $ws2 ; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; layout tabbed
 bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws20 ; workspace $ws20
-bindsym $mod+Shift+7 move container to workspace number $ws21 ; workspace $ws21
-bindsym $mod+Shift+8 move container to workspace number $ws22 ; workspace $ws22
-bindsym $mod+Shift+9 move container to workspace number $ws23 ; workspace $ws23
-bindsym $mod+Shift+0 move container to workspace number $ws24 ; workspace $ws24
 bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
 bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
 bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
-bindsym $mod2+Shift+6 move container to workspace number $ws11 ; workspace $ws11
-bindsym $mod2+Shift+7 move container to workspace number $ws12 ; workspace $ws12
+bindsym $mod2+Shift+6 move container to workspace number $ws11 ; workspace $ws16
+bindsym $mod2+Shift+7 move container to workspace number $ws12 ; workspace $ws17
+bindsym $mod+Shift+6 move container to workspace number $ws6 ; workspace $ws11
+bindsym $mod+Shift+7 move container to workspace number $ws7 ; workspace $ws12
+bindsym $mod+Shift+8 move container to workspace number $ws8 ; workspace $ws13; layout tabbed
+bindsym $mod+Shift+9 move container to workspace number $ws9 ; workspace $ws14
+bindsym $mod+Shift+0 move container to workspace number $ws10 ; workspace $ws15
 
 #Assigning workspaces to screens
 workspace $ws1 output primary
@@ -145,11 +145,11 @@ workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
 
-workspace $ws7 output eDP1
-workspace $ws8 output eDP1
-workspace $ws9 output eDP1
-workspace $ws10 output eDP1
-workspace $ws11 output eDP1
+workspace $ws12 output eDP1
+workspace $ws13 output eDP1
+workspace $ws14 output eDP1
+workspace $ws16 output eDP1
+workspace $ws17 output eDP1
 
 #Workspace rules
 for_window [class="firefox"] move to workspace $ws1
@@ -158,18 +158,17 @@ for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
 for_window [class="Brave-browser"] move to workspace $ws4
 for_window [class="code-oss"] move to workspace $ws5
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws7
-for_window [title="Microsoft Teams Notification"] move to workspace $ws7
-for_window [class="discord"] move to workspace $ws8
-for_window [class="obs"] move to workspace $ws8
-for_window [class="Blueberry"] move to workspace $ws9
-for_window [class="Pavucontrol"] move to workspace $ws9
-for_window [class="Transmission"] move to workspace $ws9
-for_window [class="Spotify"] move to workspace $ws10
-for_window [class="RSS Guard"] move to workspace $ws11
-for_window [class="Popcorn-Time"] move to workspace $ws12
-for_window [class="firefoxdeveloperedition"] move to workspace $ws20
-
+for_window [class="firefoxdeveloperedition"] move to workspace $ws6
+for_window [class="RSS Guard"] move to workspace $ws16
+for_window [class="Popcorn-Time"] move to workspace $ws17
+for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
+for_window [title="Microsoft Teams Notification"] move to workspace $ws12
+for_window [class="discord"] move to workspace $ws13
+for_window [class="obs"] move to workspace $ws13
+for_window [class="Blueberry"] move to workspace $ws14
+for_window [class="Pavucontrol"] move to workspace $ws14
+for_window [class="Transmission"] move to workspace $ws14
+for_window [class="Spotify"] move to workspace $ws15
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -182,7 +181,6 @@ popup_during_fullscreen smart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -217,24 +215,36 @@ bar {
         separator_symbol ""
  	position top
         tray_padding 0
-        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_output none
         strip_workspace_numbers yes
-        workspace_min_width 80
-        height 27
+        workspace_min_width 90
+        height 28
         colors{
                 background           $c2
                 separator               $c1
+                statusline               $c1	 
+        
+        focused_workspace  $c2 $c2 $c1
+        active_workspace     $c2 $c2 $c1
+        
+        }    
+}
+
+bar {
+        id 2
+        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+        position bottom
+        output Primary
+        workspace_buttons no
+        tray_padding 0
+        workspace_min_width 90
+        tray_output none
+        height 27
+         colors{
+                background           $c2
+                separator               $c1
                 statusline               $c1
-
-                #		   			           Border      	   BG     	Text
-        		focused_workspace             $c2	  	$c3	     $c2		 
-        		active_workspace          	$c2	          $c2	       $c3	
-        		inactive_workspace 	       $c2		 $c2	      $c1
-        		urgent_workspace   	       $c2		 $c3	      $c2
-        		binding_mode       	          $c2		    $c2		 $c2
-
-        }       
+         }
 }
 
 
@@ -245,7 +255,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
-exec blueberry
 exec transmission-gtk
 exec firefox
 exec brave
@@ -257,27 +266,27 @@ exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec termite
+bindsym $mod+x          exec terminator
 bindsym $mod+e          exec pcmanfm
-bindsym $mod+c          exec code
+bindsym $mod+c          workspace $ws5; exec code
+bindsym $mod+n          workspace $ws2; exec notion-app
 
-bindsym $mod+b          exec firefox
-bindsym $mod+Shift+b    exec brave
-bindsym $mod+m          exec virtualbox
+bindsym $mod+b         workspace $ws1; exec firefox
+bindsym $mod+Shift+b  workspace $ws4; exec brave
+bindsym $mod+m          workspace $ws3; exec virtualbox
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
-bindsym $mod+Shift+c    exec "code .config/i3/config"
-bindsym $mod+Shift+x    exec spotify
+bindsym $mod+Shift+c    workspace $ws5; exec "code .config/i3/config"
+bindsym $mod+Shift+x    workspace $ws15; exec spotify
 
-bindsym $mod2+v         exec pavucontrol
-bindsym $mod2+b         exec blueberry
-bindsym $mod2+p         exec arandr
+bindsym $mod2+v         workspace $ws14; exec pavucontrol
+bindsym $mod2+p         workspace $ws14; exec arandr
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
 
 # Sreen brightness controls
-bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10
-bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10
+bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
+bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
 
 #Screen off
 bindsym $mod2+i exec xset -dpms && pkill -RTMIN+12 i3blocks
