@@ -214,6 +214,7 @@ bindsym $mod+r mode "resize"
 bar {
         separator_symbol ""
  	position top
+        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
         tray_output none
         strip_workspace_numbers yes
@@ -228,23 +229,6 @@ bar {
         active_workspace     $c2 $c2 $c1
         
         }    
-}
-
-bar {
-        id 2
-        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-        position bottom
-        output Primary
-        workspace_buttons no
-        tray_padding 0
-        workspace_min_width 90
-        tray_output none
-        height 27
-         colors{
-                background           $c2
-                separator               $c1
-                statusline               $c1
-         }
 }
 
 
@@ -275,6 +259,8 @@ bindsym $mod+b         workspace $ws1; exec firefox
 bindsym $mod+Shift+b  workspace $ws4; exec brave
 bindsym $mod+m          workspace $ws3; exec virtualbox
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
+bindsym $mod2+c		[class="Signal"] scratchpad show
+bindsym $mod2+Shift+c 	[class="TelegramDesktop"] scratchpad show
 bindsym $mod+Shift+c    workspace $ws5; exec "code .config/i3/config"
 bindsym $mod+Shift+x    workspace $ws15; exec spotify
 
@@ -312,6 +298,8 @@ bindsym $mod+Ctrl+2 move workspace to output eDP1
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
 for_window [class="Bitwarden"] move scratchpad
+for_window [class="TelegramDesktop"] move scratchpad
+for_window [class="Signal"] move scratchpad
 
 
 #window rules
