@@ -106,3 +106,7 @@ alias commit="git commit -m"
 alias pull="git pull"
 alias addu="git add -u"
 alias adda="git add ."
+
+eval "$(ssh-agent)"
+ssh-add -q ~/.ssh/github
+clear
