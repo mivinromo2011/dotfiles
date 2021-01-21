@@ -27,9 +27,9 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # start rofi-menu
-bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod2+Tab exec --no-startup-id rofi -show window
-bindsym $mod2+e exec --no-startup-id rofi -show file-browser
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons
+bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons
 
 # change focus
 bindsym $mod+j focus left
