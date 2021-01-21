@@ -209,7 +209,6 @@ client.urgent 			$c3		$c3	      $c2 	      $c2
 bindsym $mod+r mode "resize"
 
 bar {
-        separator_symbol ""
  	position top
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
