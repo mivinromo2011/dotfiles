@@ -2,18 +2,18 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Util.SpawnOnce
-import XMonad.Hooks.Manage
+import XMonad.Hooks.ManageDocks
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-main = xmonad defaultConfig
+main = xmonad def
         {
             modMask            = mod4Mask,
-            terminal           = "termite",
+            terminal           = "terminator",
             keys               = myKeys,
-            normalBorderColor  = "#2e3440",
-            focusedBorderColor = "#bf616a",
+            normalBorderColor  = "#2b2b2b",
+            focusedBorderColor = "#d8dee9",
             borderWidth        = 2,
             clickJustFocuses   = False,
             focusFollowsMouse  = True,
@@ -28,7 +28,7 @@ main = xmonad defaultConfig
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm,               xK_x     ), spawn "termite")
+    [ ((modm,               xK_x     ), spawn "terminator")
 
     -- launch dmenu
     , ((modm,               xK_d     ), spawn "dmenu_run")
@@ -42,8 +42,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch code
     , ((modm,               xK_c     ), spawn "code")
 
-    -- launch Virtualbox
-    , ((modm,               xK_v     ), spawn "virtualbox -style kvantum-dark U%")
+    -- launch Virtmanager
+    , ((modm,               xK_v     ), spawn "virt-manager")
 
     -- launch pcmanfm
     , ((modm,               xK_e     ), spawn "pcmanfm")
@@ -54,11 +54,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch Spotify
     , ((modm .|. shiftMask, xK_x     ), spawn "spotify")
 
-    -- launch Falmeshot
+    -- launch Brave
+    , ((modm .|. shiftMask, xK_x     ), spawn "brave")
+
+    -- launch Flameshot
     , ((modm,               xK_z     ), spawn "flameshot gui")
 
     -- close focused window
     , ((modm,               xK_q     ), kill)
+
+    --hotkeys
+    , ((XF86AudioRaiseVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+    , ((XF86AudioLowerVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -133,11 +140,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 myStartupHook = do
-                spawnOnce "feh --bg-scale /Vault/setup/Wallpapers/arc.png"
+                spawnOnce "nitrogen --restore"
                 spawnOnce "picom -f &"
                 spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-                spawnOnce "xrandr --output eDP1 --mode 192x1080 --pos 0x1080 --rotate normal --output DP1 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
-                spawnOnce "rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College"
+                spawnOnce "autorandr -c"
+                spawnOnce "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
 
 myManageHook = composeAll
     [ className =? "Galculator"                     --> doFloat
