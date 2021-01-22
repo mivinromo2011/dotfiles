@@ -1,26 +1,32 @@
 [global_config]
-  dbus = False
   borderless = True
-  suppress_multiple_term_dialog = True
+  title_transmit_fg_color = "#a2a2a2"
+  title_transmit_bg_color = "#555555"
+  title_inactive_fg_color = "#a2a2a2"
+  title_inactive_bg_color = "#888888"
+  title_use_system_font = False
+  title_font = FreeSans 13
 [keybindings]
 [profiles]
   [[default]]
+    icon_bell = False
     background_color = "#282828"
-    background_darkness = 0.9
+    background_darkness = 0.93
     background_type = transparent
-    cursor_color = "#aaaaaa"
-    font = Hack 15
-    foreground_color = "#ebdbb2"
+    cursor_color = "#a2a2a2"
+    font = Hack 16
+    foreground_color = "#a2a2a2"
     show_titlebar = False
     scrollbar_position = hidden
-    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
     use_system_font = False
 [layouts]
   [[default]]
-    [[[window0]]]
-      type = Window
-      parent = ""
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
 [plugins]
