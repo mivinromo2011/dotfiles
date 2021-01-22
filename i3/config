@@ -86,7 +86,7 @@ set $ws1 "1:  LibreWolf"
 set $ws2 "2:  Notion"
 set $ws3 "3:  VirtLab"
 set $ws4 "4:  Firefox"
-set $ws5 "5:  Code"
+set $ws5 "5:  Coding"
 set $ws6 "6:  WS1"
 set $ws7 "7:  WS2"
 set $ws8 "8:  WS3"
@@ -156,7 +156,6 @@ for_window [class="LibreWolf"] move to workspace $ws1
 for_window [class="Notion"] move to workspace $ws2
 for_window [class="Virt-manager"] move to workspace $ws3
 for_window [class="firefox"] move to workspace $ws4
-for_window [class="Atom"] move to workspace $ws5
 for_window [class="Feedreader"] move to workspace $ws16
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
 for_window [title="Microsoft Teams Notification"] move to workspace $ws12
