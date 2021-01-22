@@ -238,8 +238,6 @@ exec pavucontrol
 exec transmission-gtk
 exec firefox
 exec brave
-exec feedreader
-exec notion-app
 
 #onedrive mount
 exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
@@ -257,7 +255,7 @@ bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
 bindsym $mod2+c		[class="Signal"] scratchpad show
 bindsym $mod2+Shift+c 	[class="TelegramDesktop"] scratchpad show
-bindsym $mod+Shift+c    workspace $ws5; exec "atom .config/i3/config"
+bindsym $mod+Shift+c    workspace $ws5; exec "atom ~/dotfiles/i3/config"
 bindsym $mod+Shift+x    workspace $ws15; exec spotify
 
 bindsym $mod2+v         workspace $ws14; exec pavucontrol
