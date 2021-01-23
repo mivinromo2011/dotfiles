@@ -244,7 +244,7 @@ exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+x          exec terminator
 bindsym $mod+e          exec pcmanfm
-bindsym $mod+c          workspace $ws5; exec atom
+bindsym $mod+c          workspace $ws5; exec subl
 bindsym $mod+n          workspace $ws2; exec notion-app
 
 bindsym $mod+b         	workspace $ws1; exec librewolf
@@ -253,7 +253,7 @@ bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
 bindsym $mod2+c		[class="Signal"] scratchpad show
 bindsym $mod2+Shift+c 	[class="TelegramDesktop"] scratchpad show
-bindsym $mod+Shift+c    workspace $ws5; exec "terminator -e 'vim ~/dotfiles/i3/config'"
+bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
 bindsym $mod+Shift+x    workspace $ws15; exec spotify
 
 bindsym $mod2+v         workspace $ws14; exec pavucontrol
