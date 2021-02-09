@@ -1,0 +1,309 @@
+set $mod Mod4
+set $mod2 Mod1
+
+font pango:freesans 14
+
+set $inner_gaps 7
+set $outer_gaps 7
+gaps inner $inner_gaps
+gaps outer $outer_gaps
+default_border pixel 0
+default_floating_border normal
+
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Use pactl to adjust volume in PulseAudio.
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+
+
+#Brightness
+bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
+
+floating_modifier $mod
+bindsym $mod+q kill
+
+# start rofi-menu
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons
+bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout stacking
+bindsym $mod+g layout tabbed
+bindsym $mod+y layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Workspaces
+set $ws1 "1:  LibreWolf"
+set $ws2 "2:  Notion"
+set $ws3 "3:  VirtLab"
+set $ws4 "4:  Firefox"
+set $ws5 "5:  Coding"
+set $ws6 "6:  WS1"
+set $ws7 "7:  WS2"
+set $ws8 "8:  WS3"
+set $ws9 "9:  WS4"
+set $ws10 "10:  WS5"
+set $ws11 "11:  Work"
+set $ws12 "12:  Teams"
+set $ws13 "13:  Stream"
+set $ws14 "14:  |  Panel"
+set $ws15 "15:  Music"
+set $ws16 "16:  News"
+set $ws17 "17:  Watch"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3 ; layout tabbed
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod2+1 workspace number $ws6
+bindsym $mod2+2 workspace number $ws7
+bindsym $mod2+3 workspace number $ws8
+bindsym $mod2+4 workspace number $ws9
+bindsym $mod2+5 workspace number $ws10
+bindsym $mod2+6 workspace number $ws16
+bindsym $mod2+7 workspace number $ws17
+bindsym $mod+6 workspace number $ws11
+bindsym $mod+7 workspace number $ws12
+bindsym $mod+8 workspace number $ws13 ; layout tabbed
+bindsym $mod+9 workspace number $ws14
+bindsym $mod+0 workspace number $ws15
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2 ; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; layout tabbed
+bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
+bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
+bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
+bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
+bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
+bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
+bindsym $mod2+Shift+6 move container to workspace number $ws16 ; workspace $ws16
+bindsym $mod2+Shift+7 move container to workspace number $ws17 ; workspace $ws17
+bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
+bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
+bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13; layout tabbed
+bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
+bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
+
+#Assigning workspaces to screens
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
+
+workspace $ws12 output eDP1
+workspace $ws13 output eDP1
+workspace $ws14 output eDP1
+workspace $ws16 output eDP1
+workspace $ws17 output eDP1
+
+#Workspace rules
+for_window [class="LibreWolf"] move to workspace $ws1
+for_window [class="Notion"] move to workspace $ws2
+for_window [class="Virt-manager"] move to workspace $ws3
+for_window [class="firefox"] move to workspace $ws4
+for_window [class="Feedreader"] move to workspace $ws16
+for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
+for_window [title="Microsoft Teams Notification"] move to workspace $ws12
+for_window [class="discord"] move to workspace $ws13
+for_window [class="obs"] move to workspace $ws13
+for_window [class="Blueberry"] move to workspace $ws14
+for_window [class="Pavucontrol"] move to workspace $ws14
+for_window [class="Transmission"] move to workspace $ws14
+for_window [class="Spotify"] move to workspace $ws15
+
+# reload the configuration file
+bindsym $mod+Ctrl+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+popup_during_fullscreen smart
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+#Window Colors:
+set $c1         #d8dee9
+set $c2         #2b2b2b
+set $c3         #3584e4
+
+
+#				Border		Background    text	      indicator
+client.focused		       	$c2		$c3	      $c2     	      $c2
+client.unfocused		$c2		$c2           $c1             $c2
+client.focused_inactive	        $c2   	     	$c2           $c1             $c2
+client.urgent 			$c3		$c3	      $c2 	      $c2
+
+bindsym $mod+r mode "resize"
+
+bar {
+ 	position top
+        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+        tray_padding 0
+        tray_output none
+        strip_workspace_numbers yes
+        workspace_min_width 90
+        height 28
+        colors{
+                background           $c2
+                separator            $c1
+                statusline           $c1
+
+        focused_workspace  $c2 $c2 $c1
+        active_workspace   $c2 $c2 $c1
+
+        }
+}
+
+
+#AutoStart
+exec_always autorandr -c
+exec picom -f --config ~/.config/picom/picom.conf
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec_always nitrogen --restore
+exec bitwarden
+exec pavucontrol
+exec transmission-gtk
+exec librewolf
+
+#onedrive mount
+exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
+
+#My Shortcuts
+bindsym $mod+z          exec flameshot gui
+bindsym $mod+x          exec terminator
+bindsym $mod+e          exec pcmanfm
+bindsym $mod+c          workspace $ws5; exec atom
+bindsym $mod+n          workspace $ws2; exec notion-app
+
+bindsym $mod+b         	workspace $ws1; exec librewolf
+bindsym $mod+Shift+b  	workspace $ws4; exec firefox
+bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
+bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
+bindsym $mod2+c		[class="Signal"] scratchpad show
+bindsym $mod2+Shift+c 	[class="TelegramDesktop"] scratchpad show
+bindsym $mod+Shift+c    workspace $ws5; exec "terminator -e 'vim ~/dotfiles/i3/config'"
+bindsym $mod+Shift+x    workspace $ws15; exec spotify
+
+bindsym $mod2+v         workspace $ws14; exec pavucontrol
+bindsym $mod2+p         workspace $ws14; exec arandr
+
+
+#Screen Lock
+bindsym $mod+Ctrl+l exec dm-tool lock
+
+# Sreen brightness controls
+bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
+bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
+
+#Screen off
+bindsym $mod2+i exec xset -dpms && pkill -RTMIN+12 i3blocks
+bindsym $mod2+Shift+i exec xset +dpms && pkill -RTMIN+12 i3blocks
+
+#audio
+bindsym $mod2+w                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+bindsym $mod2+s                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+bindsym $mod2+Shift+s           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMicMute       exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
+
+#Media
+bindsym $mod2+z exec playerctl play-pause
+bindsym $mod2+d exec playerctl next
+bindsym $mod2+a exec playerctl previous
+
+
+#Display workspace move
+bindsym $mod+Ctrl+1 move workspace to output HDMI1
+bindsym $mod+Ctrl+2 move workspace to output eDP1
+
+#Scratchpads
+bindsym $mod+backslash scratchpad show
+bindsym $mod+Shift+backslash move scratchpad
+for_window [class="Bitwarden"] move scratchpad
+for_window [class="TelegramDesktop"] move scratchpad
+for_window [class="Signal"] move scratchpad
+
+
+#window rules
+for_window [class="Galculator"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="qpdfview"] floating enable
+for_window [class="Sxiv"] floating enable resize 800 600
+for_window [class="Pcmanfm"] floating enable resize 800 600
+for_window [class="mpv"] floating enable
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="Windows - Soft Keyboard"] floating enable
+for_window [title=" BashTOP"] floating enable
+for_window [title="Nitrogen"] floating enable
