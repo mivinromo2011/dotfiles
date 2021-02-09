@@ -11,7 +11,7 @@
   [[default]]
     icon_bell = False
     background_color = "#282828"
-    background_darkness = 0.93
+    background_darkness = 0.9
     background_type = transparent
     cursor_color = "#a2a2a2"
     font = Hack 16

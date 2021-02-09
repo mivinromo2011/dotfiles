@@ -82,23 +82,22 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Workspaces
-set $ws1 "1:  LibreWolf"
-set $ws2 "2:  Notion"
-set $ws3 "3:  VirtLab"
-set $ws4 "4:  Firefox"
-set $ws5 "5:  Coding"
-set $ws6 "6:  WS1"
-set $ws7 "7:  WS2"
-set $ws8 "8:  WS3"
-set $ws9 "9:  WS4"
-set $ws10 "10:  WS5"
-set $ws11 "11:  Work"
-set $ws12 "12:  Teams"
-set $ws13 "13:  Stream"
-set $ws14 "14:  |  Panel"
-set $ws15 "15:  Music"
-set $ws16 "16:  News"
-set $ws17 "17:  Watch"
+set $ws1 "1:  Web1 "
+set $ws2 "2:  Web2 "
+set $ws3 "3:  Lab "
+set $ws4 "4:  Notes "
+set $ws5 "5:  Code "
+set $ws6 "6:  WS1 "
+set $ws7 "7:  WS2 "
+set $ws8 "8:  WS3 "
+set $ws9 "9:  WS4 "
+set $ws10 "10:  WS5 "
+set $ws11 "11:  Chat "
+set $ws12 "12:  Meet "
+set $ws13 "13:  Stream "
+set $ws14 "14:  Music "
+set $ws15 "15:  News "
+set $ws16 "16:  Watch "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -112,7 +111,6 @@ bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
 bindsym $mod2+6 workspace number $ws16
-bindsym $mod2+7 workspace number $ws17
 bindsym $mod+6 workspace number $ws11
 bindsym $mod+7 workspace number $ws12
 bindsym $mod+8 workspace number $ws13 ; layout tabbed
@@ -131,7 +129,6 @@ bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
 bindsym $mod2+Shift+6 move container to workspace number $ws16 ; workspace $ws16
-bindsym $mod2+Shift+7 move container to workspace number $ws17 ; workspace $ws17
 bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
 bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
 bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13; layout tabbed
@@ -145,33 +142,33 @@ workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
 
+workspace $ws11 output eDP1
 workspace $ws12 output eDP1
 workspace $ws13 output eDP1
 workspace $ws14 output eDP1
 workspace $ws16 output eDP1
-workspace $ws17 output eDP1
+
 
 #Workspace rules
 for_window [class="LibreWolf"] move to workspace $ws1
-for_window [class="Notion"] move to workspace $ws2
+for_window [class="firefox"] move to workspace $ws2
 for_window [class="Virt-manager"] move to workspace $ws3
-for_window [class="firefox"] move to workspace $ws4
-for_window [class="Feedreader"] move to workspace $ws16
+for_window [class="Notion"] move to workspace $ws4
+for_window [class="Com.gitlab.newsflash"] move to workspace $ws15
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
 for_window [title="Microsoft Teams Notification"] move to workspace $ws12
 for_window [class="discord"] move to workspace $ws13
 for_window [class="obs"] move to workspace $ws13
-for_window [class="Blueberry"] move to workspace $ws14
-for_window [class="Pavucontrol"] move to workspace $ws14
-for_window [class="Transmission"] move to workspace $ws14
-for_window [class="Spotify"] move to workspace $ws15
+for_window [class="Spotify"] move to workspace $ws14
+for_window [class="TelegramDesktop"] move to workspace $ws11
+for_window [class="Signal"] move to workspace $ws11
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
 popup_during_fullscreen smart
 
@@ -198,13 +195,6 @@ set $c1         #d8dee9
 set $c2         #2b2b2b
 set $c3         #3584e4
 
-
-#				Border		Background    text	      indicator
-client.focused		       	$c2		$c3	      $c2     	      $c2
-client.unfocused		$c2		$c2           $c1             $c2
-client.focused_inactive	        $c2   	     	$c2           $c1             $c2
-client.urgent 			$c3		$c3	      $c2 	      $c2
-
 bindsym $mod+r mode "resize"
 
 bar {
@@ -213,16 +203,12 @@ bar {
         tray_padding 0
         tray_output none
         strip_workspace_numbers yes
-        workspace_min_width 90
+        workspace_min_width 60
         height 28
         colors{
                 background           $c2
                 separator            $c1
                 statusline           $c1
-
-        focused_workspace  $c2 $c2 $c1
-        active_workspace   $c2 $c2 $c1
-
         }
 }
 
@@ -235,6 +221,7 @@ exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
 exec transmission-gtk
+exec arandr
 exec librewolf
 
 #onedrive mount
@@ -242,22 +229,23 @@ exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec terminator
+bindsym $mod+x          exec alacritty
 bindsym $mod+e          exec pcmanfm
 bindsym $mod+c          workspace $ws5; exec subl
-bindsym $mod+n          workspace $ws2; exec notion-app
+bindsym $mod+n          workspace $ws4; exec notion-app
 
 bindsym $mod+b         	workspace $ws1; exec librewolf
-bindsym $mod+Shift+b  	workspace $ws4; exec firefox
-bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
+bindsym $mod+Shift+b  	workspace $ws2; exec firefox
+bindsym $mod+m			workspace $ws3; exec virt-manager; layout tabbed
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
-bindsym $mod2+c		[class="Signal"] scratchpad show
-bindsym $mod2+Shift+c 	[class="TelegramDesktop"] scratchpad show
+bindsym $mod2+c			workspace $ws11;exec signal-desktop
+bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop
 bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
-bindsym $mod+Shift+x    workspace $ws15; exec spotify
+bindsym $mod+Shift+x    workspace $ws14; exec spotify
 
-bindsym $mod2+v         workspace $ws14; exec pavucontrol
-bindsym $mod2+p         workspace $ws14; exec arandr
+bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
+bindsym $mod2+p         [class="Arandr"] scratchpad show
+bindsym $mod2+t 		[class="Transmission"] scratchpad show
 
 
 #Screen Lock
@@ -291,8 +279,9 @@ bindsym $mod+Ctrl+2 move workspace to output eDP1
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
 for_window [class="Bitwarden"] move scratchpad
-for_window [class="TelegramDesktop"] move scratchpad
-for_window [class="Signal"] move scratchpad
+for_window [class="Pavucontrol"] move scratchpad
+for_window [class="Transmission"] move scratchpad
+for_window [class="Arandr"] move scratchpad
 
 
 #window rules

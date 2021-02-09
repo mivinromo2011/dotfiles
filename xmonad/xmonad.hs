@@ -1,13 +1,32 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.ManageDocks
+import Graphics.X11.ExtraTypes.XF86
+import XMonad.Hooks.DynamicLog
+import XMonad.Layout.Spacing
+import XMonad.Util.EZConfig
+import System.IO
+import XMonad.Actions.WorkspaceNames
+import XMonad.Actions.SpawnOn
+
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-main = xmonad def
+spawnToWorkspace :: String -> String -> X ()
+spawnToWorkspace program workspace = do
+                                    windows $ W.greedyView workspace
+                                    spawn program
+                                     
+
+myWorkspaces = ["1: Librewolf", "2: Firefox", "3: VirtLab", "4: Notion","5: Code", "6: News", "7: Meeting", "8: Stream", "9: Music", "10: Chat"] ++ map show [11..17]
+altMask = mod1Mask
+main = do
+    xmproc <- spawnPipe "xmobar /home/mivin/.config/xmobar/xmobarrc"
+    xmonad $ docks def
         {
             modMask            = mod4Mask,
             terminal           = "terminator",
@@ -17,11 +36,13 @@ main = xmonad def
             borderWidth        = 2,
             clickJustFocuses   = False,
             focusFollowsMouse  = True,
+            workspaces         = myWorkspaces,
 
             --hooks
             layoutHook         = myLayout,
-            manageHook         = myManageHook,
-            startupHook        = myStartupHook
+            manageHook         = manageSpawn <+> myManageHook,
+            startupHook        = myStartupHook,
+            logHook            = dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn xmproc , ppSep = "   " }
 
         }
 
@@ -31,19 +52,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_x     ), spawn "terminator")
 
     -- launch dmenu
-    , ((modm,               xK_d     ), spawn "dmenu_run")
+    , ((modm,               xK_d     ), spawn "rofi -show drun -show-icons")
 
     -- launch arandr
     , ((modm,               xK_p     ), spawn "arandr")
 
-    -- launch Firefox
-    , ((modm,               xK_b     ), spawn "firefox")
+    -- launch LibreWolf
+    , ((modm,               xK_b     ), spawnOn "1:Librewolf" "librewolf")
 
-    -- launch code
-    , ((modm,               xK_c     ), spawn "code")
+    -- launch Sublime
+    , ((modm,               xK_c     ), spawn "subl")
 
     -- launch Virtmanager
-    , ((modm,               xK_v     ), spawn "virt-manager")
+    , ((modm,               xK_v     ), spawnToWorkspace "virt-manager" "3:VirtLab" )
 
     -- launch pcmanfm
     , ((modm,               xK_e     ), spawn "pcmanfm")
@@ -52,10 +73,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_z     ), spawn "bitwarden")
 
     -- launch Spotify
-    , ((modm .|. shiftMask, xK_x     ), spawn "spotify")
+    , ((modm .|. shiftMask, xK_x     ), spawnOn "9:Music" "spotify")
 
-    -- launch Brave
-    , ((modm .|. shiftMask, xK_x     ), spawn "brave")
+    -- launch FireFox
+    , ((modm .|. shiftMask, xK_b     ), spawnOn "2:Firefox" "firefox")
 
     -- launch Flameshot
     , ((modm,               xK_z     ), spawn "flameshot gui")
@@ -64,9 +85,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_q     ), kill)
 
     --hotkeys
-    , ((XF86AudioRaiseVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
-    , ((XF86AudioLowerVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
-
+    , ((0, xF86XK_AudioRaiseVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+    , ((0, xF86XK_AudioLowerVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+    , ((0, xF86XK_AudioMute                ), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    , ((0, xF86XK_MonBrightnessDown        ), spawn "xbacklight -dec 10")
+    , ((0, xF86XK_MonBrightnessUp          ), spawn "xbacklight -inc 10")
+    , ((altMask,                xK_w       ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+    , ((altMask,                xK_s       ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+    , ((altMask.|. shiftMask   ,xK_s       ), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    , ((altMask .|. controlMask,xK_w       ), spawn "xbacklight -inc 10")
+    , ((altMask .|. controlMask,xK_s       ), spawn "xbacklight -dec 10")
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
 
@@ -118,6 +146,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Restart xmonad
     , ((modm              , xK_r     ), spawn "xmonad --recompile; xmonad --restart")
 
+
+
     ]
     ++
 
@@ -140,11 +170,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 myStartupHook = do
-                spawnOnce "nitrogen --restore"
-                spawnOnce "picom -f &"
-                spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-                spawnOnce "autorandr -c"
-                spawnOnce "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
+            spawnOnce "nitrogen --restore"
+            spawnOnce "picom -f --config ~/.config/picom/picom.conf"
+            spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+            spawnOnce "autorandr -c"
+            spawnOnce "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
+            spawnOnce "bitwarden"
 
 myManageHook = composeAll
     [ className =? "Galculator"                     --> doFloat
@@ -153,15 +184,28 @@ myManageHook = composeAll
     , className =? "Microsoft Teams Notification"   --> doFloat
     , className =? " BashTOP"                       --> doFloat
     , className =? "qpdfview"                       --> doFloat
-    , className =? "feh"                            --> doFloat
+    , className =? "Nitrogen"                       --> doFloat
     , className =? "Bitwarden"                      --> doFloat
+    , className =? "Microsoft Teams Notification"   --> doFloat 
     , resource  =? "desktop_window"                 --> doIgnore
-    , resource  =? "kdesktop"                       --> doIgnore ]
+    , className =? "LibreWolf"                      --> doShift "1" 
+    , className =? "firefox"                        --> doShift "2" 
+    , className =? "Virt-manager"                   --> doShift "3" 
+    , className =? "Notion"                         --> doShift "4"
+    , className =? "Com.gitlab.newsflash"           --> doShift "6" 
+    , className =? "Microsoft Teams - Preview"      --> doShift "7" 
+    , className =? "Microsoft Teams Notification"   --> doShift "7" 
+    , className =? "discord"                        --> doShift "8" 
+    , className =? "obs"                            --> doShift "8" 
+    , className =? "Spotify"                        --> doShift "9" 
+    , className =? "TelegramDesktop"                --> doShift "10"
+    , className =? "Signal"                         --> doShift "10"
+    ]
 
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
+     tiled   = spacing 5 $ Tall nmaster delta ratio
 
      -- The default number of windows in the master pane
      nmaster = 1

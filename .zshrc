@@ -1,5 +1,5 @@
 export ZSH="/home/mivin/.oh-my-zsh"
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
@@ -14,9 +14,6 @@ alias status="git status"
 alias add="git add"
 alias cleanup="yay -R `yay -Qqdt`"
 alias upd="yay -Syu"
-
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
 
 eval "$(ssh-agent)"
 ssh-add -q ~/.ssh/github
