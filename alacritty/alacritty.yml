@@ -27,6 +27,9 @@ colors:
     white:   '0xf2f0ec'
 
 font:
+  options:
+    hinting: true
+    antialias: lcd
   normal:
     family: Hack
     style: Regular
@@ -35,7 +38,7 @@ font:
     family: Hack
     style: Bold
 
-  size: 10
+  size: 10.0
 
 background_opacity: 0.90
 

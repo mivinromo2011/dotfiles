@@ -220,8 +220,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
-exec transmission-gtk
-exec arandr
 exec librewolf
 
 #onedrive mount
@@ -229,7 +227,7 @@ exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec alacritty
+bindsym $mod+x          exec terminator
 bindsym $mod+e          exec pcmanfm
 bindsym $mod+c          workspace $ws5; exec subl
 bindsym $mod+n          workspace $ws4; exec notion-app

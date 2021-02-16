@@ -1,24 +1,22 @@
 [global_config]
-  borderless = True
-  title_transmit_fg_color = "#a2a2a2"
-  title_transmit_bg_color = "#555555"
-  title_inactive_fg_color = "#a2a2a2"
-  title_inactive_bg_color = "#888888"
+  title_transmit_fg_color = "#c5c8c6"
+  title_transmit_bg_color = "#1d1f21"
+  title_inactive_fg_color = "#c5c8c6"
+  title_inactive_bg_color = "#969896"
   title_use_system_font = False
   title_font = FreeSans 13
 [keybindings]
 [profiles]
   [[default]]
     icon_bell = False
-    background_color = "#282828"
     background_darkness = 0.9
-    background_type = transparent
-    cursor_color = "#a2a2a2"
     font = Hack 16
-    foreground_color = "#a2a2a2"
     show_titlebar = False
     scrollbar_position = hidden
-    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
+    palette = "#1d1f21:#cc342b:#198844:#fba922:#3971ed:#a36ac7:#3971ed:#c5c8c6:#969896:#cc342b:#198844:#fba922:#3971ed:#a36ac7:#3971ed:#ffffff"
+    foreground_color = "#c5c8c6"
+    background_color = "#1d1f21"
+    cursor_color = "#c5c8c6"
     use_system_font = False
 [layouts]
   [[default]]

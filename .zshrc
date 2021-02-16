@@ -12,8 +12,8 @@ alias addu="git add -u"
 alias adda="git add ."
 alias status="git status"
 alias add="git add"
-alias cleanup="yay -R `yay -Qqdt`"
-alias upd="yay -Syu"
+alias cleanup="paru -R `paru -Qqdt`"
+alias upd="paru -Syu"
 
 eval "$(ssh-agent)"
 ssh-add -q ~/.ssh/github
