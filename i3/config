@@ -7,17 +7,16 @@ set $inner_gaps 7
 set $outer_gaps 7
 gaps inner $inner_gaps
 gaps outer $outer_gaps
-default_border pixel 0
-default_floating_border normal
+default_border pixel
+default_floating_border pixel 5
+popup_during_fullscreen smart
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Use pactl to adjust volume in PulseAudio.
-
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-
 
 #Brightness
 bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
@@ -148,13 +147,12 @@ workspace $ws13 output eDP1
 workspace $ws14 output eDP1
 workspace $ws16 output eDP1
 
-
 #Workspace rules
 for_window [class="LibreWolf"] move to workspace $ws1
 for_window [class="firefox"] move to workspace $ws2
 for_window [class="Virt-manager"] move to workspace $ws3
 for_window [class="Notion"] move to workspace $ws4
-for_window [class="Com.gitlab.newsflash"] move to workspace $ws15
+for_window [class="fluent-reader"] move to workspace $ws15
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
 for_window [title="Microsoft Teams Notification"] move to workspace $ws12
 for_window [class="discord"] move to workspace $ws13
@@ -169,8 +167,6 @@ bindsym $mod+Ctrl+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
-
-popup_during_fullscreen smart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -192,13 +188,13 @@ mode "resize" {
 }
 #Window Colors:
 set $c1         #d8dee9
-set $c2         #2b2b2b
+set $c2         #232629
 set $c3         #3584e4
 
 bindsym $mod+r mode "resize"
 
 bar {
- 	position top
+ 	position bottom
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
         tray_output none
@@ -212,11 +208,11 @@ bar {
         }
 }
 
-
 #AutoStart
+exec --no-startup-id redshift -l 18.007202:79.558296
 exec_always autorandr -c
 exec picom -f --config ~/.config/picom/picom.conf
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id lxpolkit
 exec_always nitrogen --restore
 exec bitwarden
 exec pavucontrol
@@ -234,17 +230,16 @@ bindsym $mod+n          workspace $ws4; exec notion-app
 
 bindsym $mod+b         	workspace $ws1; exec librewolf
 bindsym $mod+Shift+b  	workspace $ws2; exec firefox
-bindsym $mod+m			workspace $ws3; exec virt-manager; layout tabbed
+bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
 bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
-bindsym $mod2+c			workspace $ws11;exec signal-desktop
+bindsym $mod2+c		workspace $ws11;exec signal-desktop
 bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop
 bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
 bindsym $mod+Shift+x    workspace $ws14; exec spotify
 
 bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
 bindsym $mod2+p         [class="Arandr"] scratchpad show
-bindsym $mod2+t 		[class="Transmission"] scratchpad show
-
+bindsym $mod2+t 	[class="Transmission"] scratchpad show
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
@@ -253,10 +248,6 @@ bindsym $mod+Ctrl+l exec dm-tool lock
 bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
 bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
 
-#Screen off
-bindsym $mod2+i exec xset -dpms && pkill -RTMIN+12 i3blocks
-bindsym $mod2+Shift+i exec xset +dpms && pkill -RTMIN+12 i3blocks
-
 #audio
 bindsym $mod2+w                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 bindsym $mod2+s                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
@@ -264,14 +255,13 @@ bindsym $mod2+Shift+s           exec --no-startup-id pactl set-sink-mute @DEFAUL
 bindsym XF86AudioMicMute       exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
 #Media
-bindsym $mod2+z exec playerctl play-pause
-bindsym $mod2+d exec playerctl next
-bindsym $mod2+a exec playerctl previous
-
+bindsym $mod2+z exec playerctl play-pause && pkill -RTMIN+19 i3blocks
+bindsym $mod2+d exec playerctl next && pkill -RTMIN+19 i3blocks
+bindsym $mod2+a exec playerctl previous && pkill -RTMIN+19 i3blocks
 
 #Display workspace move
-bindsym $mod+Ctrl+1 move workspace to output HDMI1
-bindsym $mod+Ctrl+2 move workspace to output eDP1
+bindsym $mod+Ctrl+1 move workspace to output HDMI-1
+bindsym $mod+Ctrl+2 move workspace to output eDP-1
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
@@ -280,7 +270,6 @@ for_window [class="Bitwarden"] move scratchpad
 for_window [class="Pavucontrol"] move scratchpad
 for_window [class="Transmission"] move scratchpad
 for_window [class="Arandr"] move scratchpad
-
 
 #window rules
 for_window [class="Galculator"] floating enable

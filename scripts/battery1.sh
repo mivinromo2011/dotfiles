@@ -21,15 +21,15 @@ fi
 if [[ "${BATTERY_STATE}" = "Discharging" ]]; then
     echo " ${BATTERY_ICON} ${BATTERY_POWER}% "
     echo " ${BATTERY_ICON} ${BATTERY_POWER}% "
-    echo "#d8dee9"    
-    echo "#2b2b2b"
-    echo "#2b2b2b"
+    echo "#d8dee9"
+    echo "#232629"
+    echo "#232629"
     echo ""
 else
     echo "  ${BATTERY_POWER}% "
     echo "  ${BATTERY_POWER}% "
     echo "#d8dee9"
-    echo "#2b2b2b"
-    echo "#2b2b2b"
+    echo "#232629"
+    echo "#232629"
     echo ""
 fi

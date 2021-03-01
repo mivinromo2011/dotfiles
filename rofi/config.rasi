@@ -1,13 +1,13 @@
 configuration {
  modi: "window,drun,ssh,combi";
- font: "Free Sans 13";
+ font: "Free Sans 14";
  icon-theme: "Breeze Dark"; 
  lines: 8;
  eh: 2;
  bw: 2;
- color-window: "#2b2b2b, #2b2b2b, #d8dee9";
- color-normal: "#2b2b2b, #d8dee9, #2b2b2b, #3584e4, #d8dee9";
- color-active: "#2b2b2b, #d8dee9, #2b2b2b, #007763, #d8dee9";
- color-urgent: "#2b2b2b, #d8dee9, #2b2b2b, #77003d, #d8dee9";
+ color-window: "#31363b, #31363b, #d8dee9";
+ color-normal: "#31363b, #d8dee9, #31363b, #3daee9, #d8dee9";
+ color-active: "#31363b, #d8dee9, #31363b, #007763, #d8dee9";
+ color-urgent: "#31363b, #d8dee9, #31363b, #77003d, #d8dee9";
  }
 
