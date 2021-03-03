@@ -2,6 +2,10 @@
 
 iface=$(ip route | grep default | cut -f5 -d" ");
 
+case $BLOCK_BUTTON in
+	1) terminator -e nmtui ;;
+esac
+
 if [[ "$iface"=="wlo1" ]]; then
 	if [[ $(iw wlo1 info | grep ssid) ]]; then
 		echo "  $(iw wlo1 info | awk '/ssid/ {$1=""; print $0}')";

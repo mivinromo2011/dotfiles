@@ -13,23 +13,21 @@ elif [[ "${BATTERY_POWER}" -gt 50 ]]; then
     BATTERY_ICON=""
 elif [[ "${BATTERY_POWER}" -gt 15 ]]; then
     BATTERY_ICON=""
-elif [[ "${BATTERY_POWER}" -le 10 ]]; then
+elif [[ "${BATTERY_POWER}" -gt 0 ]]; then
     BATTERY_ICON=""
-else
-    BATTERY_ICON=""
 fi
 if [[ "${BATTERY_STATE}" = "Discharging" ]]; then
-    echo " ${BATTERY_ICON} ${BATTERY_POWER}% "
-    echo " ${BATTERY_ICON} ${BATTERY_POWER}% "
-    echo "#d8dee9"
-    echo "#232629"
-    echo "#232629"
+    echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
+    echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
+    echo "#ffffff"
+    echo "#383838"
+    echo "#383838"
     echo ""
 else
-    echo "  ${BATTERY_POWER}% "
-    echo "  ${BATTERY_POWER}% "
-    echo "#d8dee9"
-    echo "#232629"
-    echo "#232629"
+    echo "  ${BATTERY_POWER}%"
+    echo "  ${BATTERY_POWER}%"
+    echo "#ffffff"
+    echo "#383838"
+    echo "#383838"
     echo ""
 fi

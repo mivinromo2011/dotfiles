@@ -5,9 +5,9 @@ configuration {
  lines: 8;
  eh: 2;
  bw: 2;
- color-window: "#31363b, #31363b, #d8dee9";
- color-normal: "#31363b, #d8dee9, #31363b, #3daee9, #d8dee9";
- color-active: "#31363b, #d8dee9, #31363b, #007763, #d8dee9";
- color-urgent: "#31363b, #d8dee9, #31363b, #77003d, #d8dee9";
+ color-window: "#383838, #383838, #ffffff";
+ color-normal: "#383838, #ffffff, #383838, #8ab4f8, #ffffff";
+ color-active: "#383838, #ffffff, #383838, #007763, #ffffff";
+ color-urgent: "#383838, #ffffff, #383838, #77003d, #ffffff";
  }
 

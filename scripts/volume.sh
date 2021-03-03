@@ -2,7 +2,6 @@
 #----------------------------------------------------------------------------------------------------
 #Mouse actions for the block
 case $BLOCK_BUTTON in
-    1) pamixer -t ;;
     4) pamixer -i 3 ;;
     5) pamixer -d 3 ;;
 esac

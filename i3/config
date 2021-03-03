@@ -10,6 +10,12 @@ gaps outer $outer_gaps
 default_border pixel
 default_floating_border pixel 5
 popup_during_fullscreen smart
+bindsym $mod+Shift+t            gaps inner current set $inner_gaps; gaps outer current set $outer_gaps 7
+
+bindsym $mod+i                  gaps inner current plus 5
+bindsym $mod+Shift+i            gaps inner current minus 5
+bindsym $mod+o                  gaps outer current plus 5
+bindsym $mod+Shift+o            gaps outer current minus 5
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
@@ -80,6 +86,8 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+bindsym $mod+Tab workspace back_and_forth
+
 # Workspaces
 set $ws1 "1:  Web1 "
 set $ws2 "2:  Web2 "
@@ -134,6 +142,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13;
 bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
 bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
 
+#window Resize
+bindsym $mod2+Left    resize grow width 10 px or 10 ppt
+bindsym $mod2+Right   resize shrink width 10 px or 10 ppt
+bindsym $mod2+Up      resize grow height 10 px or 10 ppt
+bindsym $mod2+Down    resize shrink height 10 px or 10 ppt
+
 #Assigning workspaces to screens
 workspace $ws1 output primary
 workspace $ws2 output primary
@@ -168,30 +182,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
 #Window Colors:
-set $c1         #d8dee9
-set $c2         #232629
-set $c3         #3584e4
-
-bindsym $mod+r mode "resize"
+set $c1         #ffffff
+set $c2         #383838
 
 bar {
  	position bottom
@@ -205,13 +198,14 @@ bar {
                 background           $c2
                 separator            $c1
                 statusline           $c1
+
         }
 }
 
 #AutoStart
 exec --no-startup-id redshift -l 18.007202:79.558296
 exec_always autorandr -c
-exec picom -f --config ~/.config/picom/picom.conf
+exec picom -f --config /home/mivin/.config/picom/picom.conf
 exec --no-startup-id lxpolkit
 exec_always nitrogen --restore
 exec bitwarden
@@ -231,14 +225,15 @@ bindsym $mod+n          workspace $ws4; exec notion-app
 bindsym $mod+b         	workspace $ws1; exec librewolf
 bindsym $mod+Shift+b  	workspace $ws2; exec firefox
 bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
-bindsym $mod+Shift+z    [class="Bitwarden"] scratchpad show
+bindsym $mod2+z         [class="Bitwarden"] scratchpad show
 bindsym $mod2+c		workspace $ws11;exec signal-desktop
 bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop
 bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
 bindsym $mod+Shift+x    workspace $ws14; exec spotify
+bindsym $mod2+p         exec arandr
+bindsym $mod+Shift+s    sticky toggle
 
 bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
-bindsym $mod2+p         [class="Arandr"] scratchpad show
 bindsym $mod2+t 	[class="Transmission"] scratchpad show
 
 #Screen Lock
@@ -255,13 +250,13 @@ bindsym $mod2+Shift+s           exec --no-startup-id pactl set-sink-mute @DEFAUL
 bindsym XF86AudioMicMute       exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
 #Media
-bindsym $mod2+z exec playerctl play-pause && pkill -RTMIN+19 i3blocks
+bindsym $mod2+x exec playerctl play-pause && pkill -RTMIN+19 i3blocks
 bindsym $mod2+d exec playerctl next && pkill -RTMIN+19 i3blocks
 bindsym $mod2+a exec playerctl previous && pkill -RTMIN+19 i3blocks
 
 #Display workspace move
-bindsym $mod+Ctrl+1 move workspace to output HDMI-1
-bindsym $mod+Ctrl+2 move workspace to output eDP-1
+bindsym $mod+Ctrl+1 move workspace to output HDMI1
+bindsym $mod+Ctrl+2 move workspace to output eDP1
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
@@ -269,7 +264,6 @@ bindsym $mod+Shift+backslash move scratchpad
 for_window [class="Bitwarden"] move scratchpad
 for_window [class="Pavucontrol"] move scratchpad
 for_window [class="Transmission"] move scratchpad
-for_window [class="Arandr"] move scratchpad
 
 #window rules
 for_window [class="Galculator"] floating enable
@@ -283,3 +277,7 @@ for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="Windows - Soft Keyboard"] floating enable
 for_window [title=" BashTOP"] floating enable
 for_window [title="Nitrogen"] floating enable
+for_window [title="Nitrogen"] floating enable
+for_window [class="mpv"] sticky enable
+for_window [class="Bitwarden"] sticky enable
+for_window [class="Pavucontrol"] sticky enable
