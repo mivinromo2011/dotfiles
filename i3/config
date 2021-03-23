@@ -8,7 +8,7 @@ set $outer_gaps 7
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 default_border pixel
-default_floating_border pixel 5
+default_floating_border pixel 2
 popup_during_fullscreen smart
 bindsym $mod+Shift+t            gaps inner current set $inner_gaps; gaps outer current set $outer_gaps 7
 
@@ -89,22 +89,22 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1:  Web1 "
-set $ws2 "2:  Web2 "
-set $ws3 "3:  Lab "
-set $ws4 "4:  Notes "
-set $ws5 "5:  Code "
-set $ws6 "6:  WS1 "
-set $ws7 "7:  WS2 "
-set $ws8 "8:  WS3 "
-set $ws9 "9:  WS4 "
-set $ws10 "10:  WS5 "
-set $ws11 "11:  Chat "
-set $ws12 "12:  Meet "
-set $ws13 "13:  Stream "
-set $ws14 "14:  Music "
-set $ws15 "15:  News "
-set $ws16 "16:  Watch "
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
+set $ws7 "7:  "
+set $ws8 "8:  "
+set $ws9 "9:  "
+set $ws10 "10:  "
+set $ws11 "11:  "
+set $ws12 "12:  "
+set $ws13 "13:  "
+set $ws14 "14:  "
+set $ws15 "15:  "
+set $ws16 "16:  "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -183,41 +183,55 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
 #Window Colors:
-set $c1         #ffffff
-set $c2         #383838
+set $fg1         #ffffff
+set $bd1         #2F3D44
+set $bd2		 #222D32
+set $hoi 		 #00BCD4
+set $indc 		 #4c7899
+set $text		 #2d2d2d
+
 
 bar {
  	position bottom
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
         tray_output none
-        strip_workspace_numbers yes
         workspace_min_width 60
         height 28
         colors{
-                background           $c2
-                separator            $c1
-                statusline           $c1
+                background           $bd1
+                separator            $fg1
+                statusline           $fg1
 
+
+        		focused_workspace  $indc   $hoi    $text
+        		active_workspace   $bd1	   $bd2	   $fg1
+        		inactive_workspace #333333 $bd2 #888888
         }
 }
 
+# class                 border  backgr. text    indicator child_border
+client.focused          $hoi 	$hoi	$fg1 	$indc 	  $hoi
+client.focused_inactive $bd2	$bd1	$fg1	$indc  	  $bd1
+client.unfocused        $bd2	$bd1	$fg1	$indc  	  $bd1
+
+
 #AutoStart
 exec --no-startup-id redshift -l 18.007202:79.558296
-exec_always autorandr -c
 exec picom -f --config /home/mivin/.config/picom/picom.conf
 exec --no-startup-id lxpolkit
 exec_always nitrogen --restore
+exec_always autorandr -c
 exec bitwarden
 exec pavucontrol
 exec librewolf
 
 #onedrive mount
-exec rclone --vfs-cache-mode writes mount "College-OneDrive":  ~/College
+exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec terminator
+bindsym $mod+x          exec termite
 bindsym $mod+e          exec pcmanfm
 bindsym $mod+c          workspace $ws5; exec subl
 bindsym $mod+n          workspace $ws4; exec notion-app

@@ -3,8 +3,6 @@ BATTERY=0
 BATTERY_STATE=$(echo "${BATTERY_INFO}" | acpi -b | grep -E -o 'Discharging|Charging')
 BATTERY_POWER=$(echo "${BATTERY_INFO}" | acpi -b | grep -E -o '[0-9][0-9]?%|[0-1][0-9][0-9]?%' | cut -d "%" -f1)
 
-DEFAULT_COLOR=${DEFAULT_COLOR:-"#d8dee9"}
-
 if [[ "${BATTERY_POWER}" -gt 87 ]]; then
     BATTERY_ICON=""
 elif [[ "${BATTERY_POWER}" -gt 70 ]]; then
@@ -20,14 +18,14 @@ if [[ "${BATTERY_STATE}" = "Discharging" ]]; then
     echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
     echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
     echo "#ffffff"
-    echo "#383838"
-    echo "#383838"
+    echo "#2F3D44"
+    echo "#2F3D44"
     echo ""
 else
     echo "  ${BATTERY_POWER}%"
     echo "  ${BATTERY_POWER}%"
     echo "#ffffff"
-    echo "#383838"
-    echo "#383838"
+    echo "#2F3D44"
+    echo "#2F3D44"
     echo ""
 fi

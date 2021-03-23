@@ -1,0 +1,4 @@
+#15539E -> Blue
+#353535 -> light
+#303030 -> light 2
+#2D2D2D -> dark

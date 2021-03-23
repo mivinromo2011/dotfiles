@@ -3,7 +3,7 @@
 iface=$(ip route | grep default | cut -f5 -d" ");
 
 case $BLOCK_BUTTON in
-	1) terminator -e nmtui ;;
+	1) termite -e nmtui ;;
 esac
 
 if [[ "$iface"=="wlo1" ]]; then

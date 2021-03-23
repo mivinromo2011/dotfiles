@@ -2,6 +2,7 @@
 #----------------------------------------------------------------------------------------------------
 #Mouse actions for the block
 case $BLOCK_BUTTON in
+	1) xdotool key Alt+v ;;
     4) pamixer -i 3 ;;
     5) pamixer -d 3 ;;
 esac
