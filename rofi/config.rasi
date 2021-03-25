@@ -4,9 +4,10 @@ configuration {
  lines: 8;
  eh: 2;
  bw: 2;
- color-window: "#303030, #303030, #ffffff";
- color-normal: "#303030, #ffffff, #303030, #15539E, #ffffff";
- color-active: "#303030, #ffffff, #303030, #007763, #ffffff";
- color-urgent: "#303030, #ffffff, #303030, #77003d, #ffffff";
+ icon-theme: "Papirus-Dark";
+ color-window: "#2F3D44, #2F3D44, #ffffff";
+ color-normal: "#2F3D44, #ffffff, #2F3D44, #00BCD4, #ffffff";
+ color-active: "#2F3D44, #ffffff, #2F3D44, #007763, #ffffff";
+ color-urgent: "#2F3D44, #ffffff, #2F3D44, #77003d, #ffffff";
  }
 

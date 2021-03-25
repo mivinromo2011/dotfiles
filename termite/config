@@ -7,7 +7,7 @@ font = hack 14
 foreground      = #ffffff
 foreground_bold = #ffffff
 cursor          = #93a1a1
-background      = #222D32
+background      = #2F3D44
 
 # black
 color0  = #002b36

@@ -1,7 +1,7 @@
 set $mod Mod4
 set $mod2 Mod1
 
-font pango:freesans 14
+font pango:noto sans 13
 
 set $inner_gaps 7
 set $outer_gaps 7
@@ -192,7 +192,7 @@ set $text		 #2d2d2d
 
 
 bar {
- 	position bottom
+ 		position top
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
         tray_output none
