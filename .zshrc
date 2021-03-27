@@ -1,5 +1,5 @@
 export ZSH="/home/mivin/.oh-my-zsh"
-ZSH_THEME="agnoster"
+ZSH_THEME="risto"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
@@ -18,3 +18,8 @@ alias upd="paru -Syu"
 eval "$(ssh-agent)"
 ssh-add -q ~/.ssh/github
 clear
+
+if command -v tmux >/dev/null 2>&1 && [ "${DISPLAY}" ]; then
+    # if not inside a tmux session, and if no session is started, start a new session
+    [ -z "${TMUX}" ] && (tmux attach || tmux) >/dev/null 2>&1
+fi

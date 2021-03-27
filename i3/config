@@ -33,8 +33,8 @@ bindsym $mod+q kill
 
 # start rofi-menu
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
-bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons
-bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons
+bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons -theme ~/.config/rofi/config_windows.rasi
+bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons -theme ~/.config/rofi/config_files.rasi
 
 # change focus
 bindsym $mod+j focus left
@@ -110,7 +110,7 @@ set $ws16 "16:  "
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3 ; layout tabbed
-bindsym $mod+4 workspace number $ws4
+bindsym $mod+4 workspace number $ws4 ; layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod2+1 workspace number $ws6
 bindsym $mod2+2 workspace number $ws7
@@ -118,7 +118,7 @@ bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
 bindsym $mod2+6 workspace number $ws16
-bindsym $mod+6 workspace number $ws11
+bindsym $mod+6 workspace number $ws11 ; layout tabbed
 bindsym $mod+7 workspace number $ws12
 bindsym $mod+8 workspace number $ws13 ; layout tabbed
 bindsym $mod+9 workspace number $ws14
@@ -174,6 +174,7 @@ for_window [class="obs"] move to workspace $ws13
 for_window [class="Spotify"] move to workspace $ws14
 for_window [class="TelegramDesktop"] move to workspace $ws11
 for_window [class="Signal"] move to workspace $ws11
+for_window [class="Thunderbird"] move to workspace $ws11
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -184,11 +185,12 @@ bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want t
 
 #Window Colors:
 set $fg1         #ffffff
-set $bd1         #2F3D44
-set $bd2		 #222D32
-set $hoi 		 #00BCD4
-set $indc 		 #4c7899
-set $text		 #2d2d2d
+set $bd2         #2F3D44
+set $bd1	 #222D32
+set $hoi 	 #00BCD4
+set $indc 	 #4c7899
+set $text	 #2d2d2d
+set $urg         #FF5252
 
 
 bar {
@@ -207,6 +209,7 @@ bar {
         		focused_workspace  $indc   $hoi    $text
         		active_workspace   $bd1	   $bd2	   $fg1
         		inactive_workspace #333333 $bd2 #888888
+                        urgent_workspace   $indc   $urg    $fg1
         }
 }
 
@@ -232,19 +235,20 @@ exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/Colleg
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+x          exec termite
-bindsym $mod+e          exec pcmanfm
+bindsym $mod+Ctrl+x     exec /home/mivin/dotfiles/rofi/scripts/tmux.sh
+bindsym $mod+e          exec thunar
 bindsym $mod+c          workspace $ws5; exec subl
-bindsym $mod+n          workspace $ws4; exec notion-app
+bindsym $mod+n          workspace $ws4; layout tabbed; exec notion-app
 
 bindsym $mod+b         	workspace $ws1; exec librewolf
 bindsym $mod+Shift+b  	workspace $ws2; exec firefox
 bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
 bindsym $mod2+z         [class="Bitwarden"] scratchpad show
-bindsym $mod2+c		workspace $ws11;exec signal-desktop
-bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop
+bindsym $mod2+c		workspace $ws11;exec signal-desktop; layout tabbed
+bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop; layout tabbed
 bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
 bindsym $mod+Shift+x    workspace $ws14; exec spotify
-bindsym $mod2+p         exec arandr
+bindsym $mod2+p         exec /home/mivin/dotfiles/rofi/scripts/rofrandr.sh
 bindsym $mod+Shift+s    sticky toggle
 
 bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
@@ -285,7 +289,6 @@ for_window [class="feh"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
-for_window [class="Pcmanfm"] floating enable resize 800 600
 for_window [class="mpv"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="Windows - Soft Keyboard"] floating enable
