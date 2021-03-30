@@ -89,22 +89,17 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3:  "
-set $ws4 "4:  "
-set $ws5 "5:  "
-set $ws6 "6:  "
-set $ws7 "7:  "
-set $ws8 "8:  "
-set $ws9 "9:  "
-set $ws10 "10:  "
-set $ws11 "11:  "
-set $ws12 "12:  "
-set $ws13 "13:  "
-set $ws14 "14:  "
-set $ws15 "15:  "
-set $ws16 "16:  "
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -117,12 +112,7 @@ bindsym $mod2+2 workspace number $ws7
 bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
-bindsym $mod2+6 workspace number $ws16
-bindsym $mod+6 workspace number $ws11 ; layout tabbed
-bindsym $mod+7 workspace number $ws12
-bindsym $mod+8 workspace number $ws13 ; layout tabbed
-bindsym $mod+9 workspace number $ws14
-bindsym $mod+0 workspace number $ws15
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
@@ -135,12 +125,7 @@ bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
 bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
-bindsym $mod2+Shift+6 move container to workspace number $ws16 ; workspace $ws16
-bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
-bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
-bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13; layout tabbed
-bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
-bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
+
 
 #window Resize
 bindsym $mod2+Left    resize grow width 10 px or 10 ppt
@@ -148,21 +133,11 @@ bindsym $mod2+Right   resize shrink width 10 px or 10 ppt
 bindsym $mod2+Up      resize grow height 10 px or 10 ppt
 bindsym $mod2+Down    resize shrink height 10 px or 10 ppt
 
-#Assigning workspaces to screens
-workspace $ws1 output primary
-workspace $ws2 output primary
-workspace $ws3 output primary
-workspace $ws4 output primary
-workspace $ws5 output primary
-
-workspace $ws11 output eDP1
-workspace $ws12 output eDP1
-workspace $ws13 output eDP1
-workspace $ws14 output eDP1
-workspace $ws16 output eDP1
 
 #Workspace rules
 for_window [class="firefox"] move to workspace $ws1
+for_window [class="Sublimetext"] move to workspace $ws1
+for_window [class="Terminator"] move to workspace $ws3
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -213,7 +188,7 @@ exec picom -f --config /home/mivin/.config/picom/picom.conf
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec termite
+bindsym $mod+x          exec terminator
 bindsym $mod+Ctrl+x     exec /home/mivin/dotfiles/rofi/scripts/tmux.sh
 bindsym $mod+e          exec thunar
 bindsym $mod+c          workspace $ws2; exec subl
