@@ -19,22 +19,13 @@ bindsym $mod+Shift+o            gaps outer current minus 5
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-
-#Brightness
-bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
-bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
 
 floating_modifier $mod
 bindsym $mod+q kill
 
-# start rofi-menu
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
-bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons -theme ~/.config/rofi/config_windows.rasi
-bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons -theme ~/.config/rofi/config_files.rasi
+#dmenu
+bindsym $mod+d dmenu_run
+
 
 # change focus
 bindsym $mod+j focus left
