@@ -162,19 +162,7 @@ workspace $ws14 output eDP1
 workspace $ws16 output eDP1
 
 #Workspace rules
-for_window [class="LibreWolf"] move to workspace $ws1
-for_window [class="firefox"] move to workspace $ws2
-for_window [class="Virt-manager"] move to workspace $ws3
-for_window [class="Notion"] move to workspace $ws4
-for_window [class="fluent-reader"] move to workspace $ws15
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
-for_window [title="Microsoft Teams Notification"] move to workspace $ws12
-for_window [class="discord"] move to workspace $ws13
-for_window [class="obs"] move to workspace $ws13
-for_window [class="Spotify"] move to workspace $ws14
-for_window [class="TelegramDesktop"] move to workspace $ws11
-for_window [class="Signal"] move to workspace $ws11
-for_window [class="Thunderbird"] move to workspace $ws11
+for_window [class="firefox"] move to workspace $ws1
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -220,81 +208,21 @@ client.unfocused        $bd2	$bd1	$fg1	$indc  	  $bd1
 
 
 #AutoStart
-exec --no-startup-id redshift -l 18.007202:79.558296
 exec picom -f --config /home/mivin/.config/picom/picom.conf
-exec --no-startup-id lxpolkit
-exec_always nitrogen --restore
-exec_always autorandr -c
-exec bitwarden
-exec pavucontrol
-exec librewolf
 
-#onedrive mount
-exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
 
 #My Shortcuts
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+x          exec termite
 bindsym $mod+Ctrl+x     exec /home/mivin/dotfiles/rofi/scripts/tmux.sh
 bindsym $mod+e          exec thunar
-bindsym $mod+c          workspace $ws5; exec subl
-bindsym $mod+n          workspace $ws4; layout tabbed; exec notion-app
-
-bindsym $mod+b         	workspace $ws1; exec librewolf
-bindsym $mod+Shift+b  	workspace $ws2; exec firefox
-bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
-bindsym $mod2+z         [class="Bitwarden"] scratchpad show
-bindsym $mod2+c		workspace $ws11;exec signal-desktop; layout tabbed
-bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop; layout tabbed
-bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
-bindsym $mod+Shift+x    workspace $ws14; exec spotify
-bindsym $mod2+p         exec /home/mivin/dotfiles/rofi/scripts/rofrandr.sh
-bindsym $mod+Shift+s    sticky toggle
-
-bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
-bindsym $mod2+t 	[class="Transmission"] scratchpad show
+bindsym $mod+c          workspace $ws2; exec subl
+bindsym $mod+b         	workspace $ws1; exec firefox
+ 
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
 
-# Sreen brightness controls
-bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
-bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 i3blocks
 
-#audio
-bindsym $mod2+w                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
-bindsym $mod2+s                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
-bindsym $mod2+Shift+s           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMicMute       exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
-#Media
-bindsym $mod2+x exec playerctl play-pause && pkill -RTMIN+19 i3blocks
-bindsym $mod2+d exec playerctl next && pkill -RTMIN+19 i3blocks
-bindsym $mod2+a exec playerctl previous && pkill -RTMIN+19 i3blocks
 
-#Display workspace move
-bindsym $mod+Ctrl+1 move workspace to output HDMI1
-bindsym $mod+Ctrl+2 move workspace to output eDP1
-
-#Scratchpads
-bindsym $mod+backslash scratchpad show
-bindsym $mod+Shift+backslash move scratchpad
-for_window [class="Bitwarden"] move scratchpad
-for_window [class="Pavucontrol"] move scratchpad
-for_window [class="Transmission"] move scratchpad
-
-#window rules
-for_window [class="Galculator"] floating enable
-for_window [class="feh"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [class="qpdfview"] floating enable
-for_window [class="Sxiv"] floating enable resize 800 600
-for_window [class="mpv"] floating enable
-for_window [title="Microsoft Teams Notification"] floating enable
-for_window [title="Windows - Soft Keyboard"] floating enable
-for_window [title=" BashTOP"] floating enable
-for_window [title="Nitrogen"] floating enable
-for_window [title="Nitrogen"] floating enable
-for_window [class="mpv"] sticky enable
-for_window [class="Bitwarden"] sticky enable
-for_window [class="Pavucontrol"] sticky enable
