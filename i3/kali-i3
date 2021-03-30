@@ -24,7 +24,7 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 #dmenu
-bindsym $mod+d dmenu_run
+bindsym $mod+d exec dmenu_run
 
 
 # change focus
