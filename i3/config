@@ -194,7 +194,7 @@ set $urg         #FF5252
 
 
 bar {
- 		position top
+ 	position top
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 0
         tray_output none
@@ -223,8 +223,7 @@ client.unfocused        $bd2	$bd1	$fg1	$indc  	  $bd1
 exec --no-startup-id redshift -l 18.007202:79.558296
 exec picom -f --config /home/mivin/.config/picom/picom.conf
 exec --no-startup-id lxpolkit
-exec_always nitrogen --restore
-exec_always autorandr -c
+exec_always feh --bg-fill /home/mivin/setup/Wallpapers/19737.jpg
 exec bitwarden
 exec pavucontrol
 exec librewolf
@@ -233,6 +232,7 @@ exec librewolf
 exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
 
 #My Shortcuts
+bindsym $mod+Ctrl+s    exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+x          exec termite
 bindsym $mod+Ctrl+x     exec /home/mivin/dotfiles/rofi/scripts/tmux.sh
