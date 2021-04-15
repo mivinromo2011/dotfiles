@@ -10,7 +10,7 @@ gaps outer $outer_gaps
 default_border pixel
 default_floating_border pixel 2
 popup_during_fullscreen smart
-bindsym $mod+Shift+t            gaps inner current set $inner_gaps; gaps outer current set $outer_gaps 7
+bindsym $mod+Shift+t            gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 
 bindsym $mod+i                  gaps inner current plus 5
 bindsym $mod+Shift+i            gaps inner current minus 5
@@ -32,9 +32,7 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # start rofi-menu
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
-bindsym $mod2+Tab exec --no-startup-id rofi -show window -show-icons -theme ~/.config/rofi/config_windows.rasi
-bindsym $mod2+e exec --no-startup-id rofi -show file-browser -show-icons -theme ~/.config/rofi/config_files.rasi
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Noto Sans-14'
 
 # change focus
 bindsym $mod+j focus left
@@ -89,22 +87,17 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3:  "
-set $ws4 "4:  "
-set $ws5 "5:  "
-set $ws6 "6:  "
-set $ws7 "7:  "
-set $ws8 "8:  "
-set $ws9 "9:  "
-set $ws10 "10:  "
-set $ws11 "11:  "
-set $ws12 "12:  "
-set $ws13 "13:  "
-set $ws14 "14:  "
-set $ws15 "15:  "
-set $ws16 "16:  "
+set $ws1 "1 : "
+set $ws2 "2 : "
+set $ws3 "3 : "
+set $ws4 "4 : ﬏"
+set $ws5 "5 : "
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10 : 阮"
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -117,12 +110,7 @@ bindsym $mod2+2 workspace number $ws7
 bindsym $mod2+3 workspace number $ws8
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
-bindsym $mod2+6 workspace number $ws16
-bindsym $mod+6 workspace number $ws11 ; layout tabbed
-bindsym $mod+7 workspace number $ws12
-bindsym $mod+8 workspace number $ws13 ; layout tabbed
-bindsym $mod+9 workspace number $ws14
-bindsym $mod+0 workspace number $ws15
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
@@ -135,12 +123,7 @@ bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
 bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
-bindsym $mod2+Shift+6 move container to workspace number $ws16 ; workspace $ws16
-bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
-bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
-bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13; layout tabbed
-bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
-bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
+
 
 #window Resize
 bindsym $mod2+Left    resize grow width 10 px or 10 ppt
@@ -155,26 +138,14 @@ workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
 
-workspace $ws11 output eDP1
-workspace $ws12 output eDP1
-workspace $ws13 output eDP1
-workspace $ws14 output eDP1
-workspace $ws16 output eDP1
 
 #Workspace rules
 for_window [class="LibreWolf"] move to workspace $ws1
 for_window [class="firefox"] move to workspace $ws2
 for_window [class="Virt-manager"] move to workspace $ws3
-for_window [class="Notion"] move to workspace $ws4
-for_window [class="fluent-reader"] move to workspace $ws15
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws12
-for_window [title="Microsoft Teams Notification"] move to workspace $ws12
-for_window [class="discord"] move to workspace $ws13
-for_window [class="obs"] move to workspace $ws13
-for_window [class="Spotify"] move to workspace $ws14
-for_window [class="TelegramDesktop"] move to workspace $ws11
-for_window [class="Signal"] move to workspace $ws11
-for_window [class="Thunderbird"] move to workspace $ws11
+for_window [class="code-oss"] move to workspace $ws4
+for_window [class="Termite"] move to workspace $ws5
+for_window [class="Spotify"] move to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -184,71 +155,68 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
 #Window Colors:
-set $fg1         #ffffff
-set $bd2         #2F3D44
-set $bd1	 #222D32
-set $hoi 	 #00BCD4
-set $indc 	 #4c7899
-set $text	 #2d2d2d
-set $urg         #FF5252
 
 
 bar {
  	position top
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-        tray_padding 0
-        tray_output none
-        workspace_min_width 60
-        height 28
+        tray_padding 5
+        tray_output primary
+        workspace_min_width 40
+        height 27
         colors{
-                background           $bd1
-                separator            $fg1
-                statusline           $fg1
+                background #161616
+                statusline #ffffff
+                separator #666666
 
-
-        		focused_workspace  $text   $hoi    $text
-        		active_workspace   $bd1	   $bd2	   $fg1
-        		inactive_workspace #333333 $bd2 #888888
-                        urgent_workspace   $indc   $urg    $fg1
+                #                  border  backgr  text   
+                focused_workspace  #4c7899 #66aabb #161616
+                active_workspace   #333333 #5f676a #161616
+                inactive_workspace #333333 #222222 #888888
+                urgent_workspace   #2f343a #900000 #ffffff
+                binding_mode       #2f343a #cc342b #ffffff
         }
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $hoi 	$hoi	$fg1 	$indc 	  $hoi
-client.focused_inactive $bd2	$bd1	$fg1	$indc  	  $bd1
-client.unfocused        $bd2	$bd1	$fg1	$indc  	  $bd1
+client.focused          #66aabb #66aabb #ffffff #66aabb   #66aabb
+client.focused_inactive #333333 #5f676a #ffffff #969896   #969896
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
+client.background       #ffffff
 
 #AutoStart
 exec --no-startup-id redshift -l 18.007202:79.558296
 exec picom -f --config /home/mivin/.config/picom/picom.conf
 exec --no-startup-id lxpolkit
-exec_always feh --bg-fill /home/mivin/setup/Wallpapers/19737.jpg
+exec_always feh --bg-fill /home/mivin/setup/Wallpapers/buildings.jpg
 exec bitwarden
+exec firefox
 exec pavucontrol
 exec librewolf
+exec termite
+exec --no-startup-id nextcloud
+exec --no-startup-id nm-applet
+exec --no-startup-id caffeine
 
 #onedrive mount
 exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
 
 #My Shortcuts
-bindsym $mod+Ctrl+s    exec sh -c 'autorandr --change'
+bindsym $mod+Ctrl+s     exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+x          exec termite
-bindsym $mod+Ctrl+x     exec /home/mivin/dotfiles/rofi/scripts/tmux.sh
 bindsym $mod+e          exec thunar
-bindsym $mod+c          workspace $ws5; exec subl
-bindsym $mod+n          workspace $ws4; layout tabbed; exec notion-app
-
-bindsym $mod+b         	workspace $ws1; exec librewolf
-bindsym $mod+Shift+b  	workspace $ws2; exec firefox
-bindsym $mod+m		workspace $ws3; exec virt-manager; layout tabbed
+bindsym $mod+x          exec raiseorlaunch -c Termite -w "5 : "
+bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4 : ﬏"
+bindsym $mod+s          exec raiseorlaunch -c Spotify -w "10 : 阮"
+bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1 : "
+bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2 : "
+bindsym $mod+m		exec raiseorlaunch -c Virt-manager -w "3 : "          
 bindsym $mod2+z         [class="Bitwarden"] scratchpad show
-bindsym $mod2+c		workspace $ws11;exec signal-desktop; layout tabbed
-bindsym $mod2+Shift+c 	workspace $ws11;exec telegram-desktop; layout tabbed
-bindsym $mod+Shift+c    workspace $ws5; exec "subl ~/dotfiles/i3/config"
-bindsym $mod+Shift+x    workspace $ws14; exec spotify
-bindsym $mod2+p         exec /home/mivin/dotfiles/rofi/scripts/rofrandr.sh
+bindsym $mod+Shift+c    workspace $ws4; exec "code ~/dotfiles/i3/config"
+
 bindsym $mod+Shift+s    sticky toggle
 
 bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
@@ -273,15 +241,14 @@ bindsym $mod2+d exec playerctl next && pkill -RTMIN+19 i3blocks
 bindsym $mod2+a exec playerctl previous && pkill -RTMIN+19 i3blocks
 
 #Display workspace move
-bindsym $mod+Ctrl+1 move workspace to output HDMI1
-bindsym $mod+Ctrl+2 move workspace to output eDP1
+bindsym $mod+Ctrl+1 move workspace to output HDMI-1
+bindsym $mod+Ctrl+2 move workspace to output eDP-1
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
 for_window [class="Bitwarden"] move scratchpad
 for_window [class="Pavucontrol"] move scratchpad
-for_window [class="Transmission"] move scratchpad
 
 #window rules
 for_window [class="Galculator"] floating enable
@@ -289,12 +256,9 @@ for_window [class="feh"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="qpdfview"] floating enable
 for_window [class="Sxiv"] floating enable resize 800 600
-for_window [class="mpv"] floating enable
-for_window [title="Microsoft Teams Notification"] floating enable
-for_window [title="Windows - Soft Keyboard"] floating enable
+#for_window [class="mpv"] floating enable
 for_window [title=" BashTOP"] floating enable
-for_window [title="Nitrogen"] floating enable
-for_window [title="Nitrogen"] floating enable
-for_window [class="mpv"] sticky enable
+for_window [class="Transmission"] floating enable
+#for_window [class="mpv"] sticky enable
 for_window [class="Bitwarden"] sticky enable
 for_window [class="Pavucontrol"] sticky enable
