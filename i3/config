@@ -1,7 +1,7 @@
 set $mod Mod4
 set $mod2 Mod1
 
-font pango:noto sans 13
+font pango:noto sans 14
 
 set $inner_gaps 7
 set $outer_gaps 7
@@ -12,10 +12,10 @@ default_floating_border pixel 2
 popup_during_fullscreen smart
 bindsym $mod+Shift+t            gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 
-bindsym $mod+i                  gaps inner current plus 5
-bindsym $mod+Shift+i            gaps inner current minus 5
-bindsym $mod+o                  gaps outer current plus 5
-bindsym $mod+Shift+o            gaps outer current minus 5
+bindsym $mod2+i                  gaps inner current plus 5
+bindsym $mod2+Shift+i            gaps inner current minus 5
+bindsym $mod2+o                  gaps outer current plus 5
+bindsym $mod2+Shift+o            gaps outer current minus 5
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
@@ -68,9 +68,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+t layout stacking
-bindsym $mod+g layout tabbed
-bindsym $mod+y layout toggle split
+bindsym $mod+i layout stacking
+bindsym $mod+o layout tabbed
+bindsym $mod+p layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -87,16 +87,21 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1 : "
-set $ws2 "2 : "
-set $ws3 "3 : "
-set $ws4 "4 : ﬏"
-set $ws5 "5 : "
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10 : 阮"
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4: ﬏ "
+set $ws5 "5:  "
+set $ws6 "6:  "
+set $ws7 "7:  "
+set $ws8 "8:  "
+set $ws9 "9:  "
+set $ws10 "10: 阮 "
+set $ws11 "11: S1 "
+set $ws12 "12: S2 "
+set $Ws13 "13: S3 "
+set $Ws14 "14: S4 "
+set $Ws15 "15: S5 "
 
 
 # switch to workspace
@@ -107,9 +112,14 @@ bindsym $mod+4 workspace number $ws4 ; layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod2+1 workspace number $ws6
 bindsym $mod2+2 workspace number $ws7
-bindsym $mod2+3 workspace number $ws8
+bindsym $mod2+3 workspace number $ws8 ; layout tabbed
 bindsym $mod2+4 workspace number $ws9
 bindsym $mod2+5 workspace number $ws10
+bindsym $mod+6 workspace number $ws11
+bindsym $mod+7 workspace number $ws12
+bindsym $mod+8 workspace number $ws13
+bindsym $mod+9 workspace number $ws14
+bindsym $mod+0 workspace number $ws15
 
 
 # move focused container to workspace
@@ -120,9 +130,14 @@ bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
 bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
 bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
-bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8
+bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8 ; layout tabbed
 bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
 bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
+bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
+bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
+bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13
+bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
+bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
 
 
 #window Resize
@@ -137,14 +152,23 @@ workspace $ws2 output primary
 workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
-
+workspace $ws7 output eDP1
+workspace $ws8 output eDP1
+workspace $ws9 output eDP1
+workspace $ws10 output eDP1
 
 #Workspace rules
 for_window [class="LibreWolf"] move to workspace $ws1
 for_window [class="firefox"] move to workspace $ws2
-for_window [class="Virt-manager"] move to workspace $ws3
+for_window [class="VirtualBox Manager"] move to workspace $ws3
+for_window [class="VirtualBox Machine"] move to workspace $ws3
 for_window [class="code-oss"] move to workspace $ws4
 for_window [class="Termite"] move to workspace $ws5
+for_window [class="Notion"] move to workspace $ws6
+for_window [class="FreeTube"] move to workspace $ws7
+for_window [class=discord|TelegramDesktop|Signal] move to workspace $ws8
+for_window [class="Microsoft Teams - Preview"] move to workspace $ws8
+for_window [class="Transmission"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
 # reload the configuration file
@@ -152,9 +176,21 @@ bindsym $mod+Ctrl+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Power Menu' -b 'ShutDown' 'systemctl poweroff' -b 'Restart' 'systemctl restart' -B 'Logout' 'i3-msg exit'"
+bindsym $mod+Shift+c exec "i3-nagbar -f hack -t warning -m 'Control Panel' -b 'Edit Config' 'code ~/.config/i3/config' -B 'Volume Contorl' 'raiseorlaunch -c Pavucontrol -r' -B 'Appearance' 'raiseorlaunch -c Lxappearance'"
 
-#Window Colors:
+
+set $bback      #000000
+set $fontw      #ffffff
+set $border1    #333333
+set $border2    #4c7899
+set $border3    #2f343a
+set $fontd      #2d2d2d
+set $backfo     #007fa2
+set $backac     #888888
+set $backinac   #222222
+set $backurg    #ef6769
+set $indic      #00a6c9
 
 
 bar {
@@ -162,41 +198,43 @@ bar {
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 5
         tray_output primary
-        workspace_min_width 40
-        height 27
+        strip_workspace_numbers true
+        workspace_min_width 50
+        height 28
         colors{
-                background #161616
-                statusline #ffffff
-                separator #666666
+                background $bback
+                statusline $fontw
+                separator  $fontw
 
-                #                  border  backgr  text   
-                focused_workspace  #4c7899 #66aabb #161616
-                active_workspace   #333333 #5f676a #161616
-                inactive_workspace #333333 #222222 #888888
-                urgent_workspace   #2f343a #900000 #ffffff
-                binding_mode       #2f343a #cc342b #ffffff
+                #                  border       backgr       text   
+                focused_workspace  $border2     $backfo      $fontw
+                active_workspace   $border1     $backac      $fontw
+                inactive_workspace $border1     $backinac    $fontw
+                urgent_workspace   $border3     $backurg     $fontd
+                binding_mode       $border3     $backurg     $fontw
         }
 }
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #66aabb #66aabb #ffffff #66aabb   #66aabb
-client.focused_inactive #333333 #5f676a #ffffff #969896   #969896
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#Window colours         border          backgr.         text            indicator       child_border
+client.focused          $backfo         $backfo         $fontw          $indic          $backfo
+client.focused_inactive $border1        #5f676a         $fontw          $indic          $backfo
+client.unfocused        $border1        $backina        $fontd          #292d2e         $backina
+client.urgent           $border3        $backurg        $fontw          $backurg        $backurg
+client.placeholder      $backinac       $backinac       $fontw          $backinac       $backinac
 
-client.background       #ffffff
+client.background       $fontw
 
 #AutoStart
 exec --no-startup-id redshift -l 18.007202:79.558296
-exec picom -f --config /home/mivin/.config/picom/picom.conf
+exec picom -f --experimental-backends --config /home/mivin/.config/picom/picom.conf
 exec --no-startup-id lxpolkit
-exec_always feh --bg-fill /home/mivin/setup/Wallpapers/buildings.jpg
+exec_always feh --bg-fill /home/mivin/setup/Wallpapers/punk.jpg
 exec bitwarden
 exec firefox
 exec pavucontrol
 exec librewolf
 exec termite
+exec --no-startup-id autorandr --change
 exec --no-startup-id nextcloud
 exec --no-startup-id nm-applet
 exec --no-startup-id caffeine
@@ -207,20 +245,22 @@ exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/Colleg
 #My Shortcuts
 bindsym $mod+Ctrl+s     exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+e          exec thunar
-bindsym $mod+x          exec raiseorlaunch -c Termite -w "5 : "
-bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4 : ﬏"
-bindsym $mod+s          exec raiseorlaunch -c Spotify -w "10 : 阮"
-bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1 : "
-bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2 : "
-bindsym $mod+m		exec raiseorlaunch -c Virt-manager -w "3 : "          
-bindsym $mod2+z         [class="Bitwarden"] scratchpad show
-bindsym $mod+Shift+c    workspace $ws4; exec "code ~/dotfiles/i3/config"
+bindsym $mod+e          exec raiseorlaunch -c Thunar
+bindsym $mod+x          exec raiseorlaunch -c Termite -w "5:  "
+bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4: ﬏ "
+bindsym $mod+s          exec raiseorlaunch -c Spotify -w "10: 阮 "
+bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
+bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2:  "
+bindsym $mod+m		exec raiseorlaunch -c VirtualBox -w "3:  "
+bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app -w "6:  "
+bindsym $mod+y          exec raiseorlaunch -c FreeTube -w "7:  "
+bindsym $mod+g          exec raiseorlaunch -c discord -w "8:  "
+bindsym $mod+t          exec raiseorlaunch -c Transmission-gtk -r
+bindsym $mod2+z         exec raiseorlaunch -c Bitwarden -r
+bindsym $mod2+v         exec raiseorlaunch -c Pavucontrol -r 
 
+#Toggling Sticky keys
 bindsym $mod+Shift+s    sticky toggle
-
-bindsym $mod2+v         [class="Pavucontrol"] scratchpad show
-bindsym $mod2+t 	[class="Transmission"] scratchpad show
 
 #Screen Lock
 bindsym $mod+Ctrl+l exec dm-tool lock
@@ -241,24 +281,17 @@ bindsym $mod2+d exec playerctl next && pkill -RTMIN+19 i3blocks
 bindsym $mod2+a exec playerctl previous && pkill -RTMIN+19 i3blocks
 
 #Display workspace move
-bindsym $mod+Ctrl+1 move workspace to output HDMI-1
-bindsym $mod+Ctrl+2 move workspace to output eDP-1
+bindsym $mod+Ctrl+1 move workspace to output HDMI1
+bindsym $mod+Ctrl+2 move workspace to output eDP1
 
 #Scratchpads
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
-for_window [class="Bitwarden"] move scratchpad
-for_window [class="Pavucontrol"] move scratchpad
+for_window [class=Bitwarden|Transmission-gtk|Pavucontrol] move scratchpad
 
 #window rules
-for_window [class="Galculator"] floating enable
-for_window [class="feh"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [class="qpdfview"] floating enable
+for_window [class=Galculator|feh|Lxappearance|qpdfview|vlc|Galculator] floating enable
+for_window [class="VirtualBox Machine"] layout tabbed
 for_window [class="Sxiv"] floating enable resize 800 600
-#for_window [class="mpv"] floating enable
-for_window [title=" BashTOP"] floating enable
-for_window [class="Transmission"] floating enable
-#for_window [class="mpv"] sticky enable
-for_window [class="Bitwarden"] sticky enable
-for_window [class="Pavucontrol"] sticky enable
+for_window [class=Galculator|vlc|Bitwarden|Pavucontrol] sticky enable
+for_window [title="Microsoft Teams Notification"] floating enable

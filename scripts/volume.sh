@@ -10,4 +10,4 @@ esac
 #Toggle mute
 [[ $(pamixer --get-mute) = "true" ]] && echo -n  && exit
 #Display volume
-echo  $(pamixer --get-volume)%;
+echo 🔊 $(pamixer --get-volume)%;

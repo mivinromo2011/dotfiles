@@ -24,6 +24,7 @@ def rename(i3,e):
                     icon=""
                 if(windows=="VirtualBox Manager"):
                     icon="歷"
+                
             i3.command('rename workspace "%s" to "%s"'%(i.name,icon))
 
     
