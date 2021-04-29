@@ -1,7 +1,7 @@
 set $mod Mod4
 set $mod2 Mod1
 
-font pango:noto sans 14
+font pango:DejaVu Sans 14
 
 set $inner_gaps 7
 set $outer_gaps 7
@@ -87,7 +87,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1:  "
+set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4: ﬏ "
@@ -163,10 +163,10 @@ for_window [class="firefox"] move to workspace $ws2
 for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
 for_window [class="code-oss"] move to workspace $ws4
-for_window [class="Termite"] move to workspace $ws5
+for_window [class="kitty"] move to workspace $ws5
 for_window [class="Notion"] move to workspace $ws6
 for_window [class="FreeTube"] move to workspace $ws7
-for_window [class=discord|TelegramDesktop|Signal] move to workspace $ws8
+for_window [class=discord|Ferdi] move to workspace $ws8
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws8
 for_window [class="Transmission"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
@@ -176,82 +176,71 @@ bindsym $mod+Ctrl+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Power Menu' -b 'ShutDown' 'systemctl poweroff' -b 'Restart' 'systemctl restart' -B 'Logout' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Power Menu' -b 'ShutDown' 'systemctl poweroff' -b 'Restart' 'systemctl reboot' -B 'Logout' 'i3-msg exit'"
 bindsym $mod+Shift+c exec "i3-nagbar -f hack -t warning -m 'Control Panel' -b 'Edit Config' 'code ~/.config/i3/config' -B 'Volume Contorl' 'raiseorlaunch -c Pavucontrol -r' -B 'Appearance' 'raiseorlaunch -c Lxappearance'"
 
-
-set $bback      #000000
-set $fontw      #ffffff
-set $border1    #333333
-set $border2    #4c7899
-set $border3    #2f343a
-set $fontd      #2d2d2d
-set $backfo     #007fa2
-set $backac     #888888
-set $backinac   #222222
-set $backurg    #ef6769
-set $indic      #00a6c9
-
+set_from_resource $black_back   black_back
+set_from_resource $grey_back    grey_back
+set_from_resource $blue_highl   blue_highl
+set_from_resource $red_urg      red_urg
+set_from_resource $text_white   text_white
+set_from_resource $green_highl  green_highl
+set_from_resource $dark_black   dark_black
+set_from_resource $light_black  light_black
 
 bar {
  	position top
         status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
         tray_padding 5
-        tray_output primary
+        tray_output none
         strip_workspace_numbers true
         workspace_min_width 50
         height 28
         colors{
-                background $bback
-                statusline $fontw
-                separator  $fontw
+                background $black_back
+                statusline $text_white
+                separator  $text_white
 
                 #                  border       backgr       text   
-                focused_workspace  $border2     $backfo      $fontw
-                active_workspace   $border1     $backac      $fontw
-                inactive_workspace $border1     $backinac    $fontw
-                urgent_workspace   $border3     $backurg     $fontd
-                binding_mode       $border3     $backurg     $fontw
+                focused_workspace  $light_black $blue_highl  $text_white
+                active_workspace   $light_black $grey_back   $text_white
+                inactive_workspace $dark_black  $light_black $text_white
+                urgent_workspace   $dark_black  $red_urg     $text_white
+                binding_mode       $dark_black  $red_urg     $text_white
         }
 }
 
 #Window colours         border          backgr.         text            indicator       child_border
-client.focused          $backfo         $backfo         $fontw          $indic          $backfo
-client.focused_inactive $border1        #5f676a         $fontw          $indic          $backfo
-client.unfocused        $border1        $backina        $fontd          #292d2e         $backina
-client.urgent           $border3        $backurg        $fontw          $backurg        $backurg
-client.placeholder      $backinac       $backinac       $fontw          $backinac       $backinac
-
-client.background       $fontw
+client.focused          $dark_black     $blue_highl     $text_white     $green_highl    $blue_highl
+client.focused_inactive $dark_black     $black_back      $text_white     $green_highl    $blue_highl
+client.unfocused        $dark_black     $grey_back      $black_back     $green_highl    $grey_back
+client.urgent           $red_urg        $red_urg        $text_white     $green_highl    $grey_back
+client.placeholder      $black_back     $grey_back      $text_white     $green_highl    $grey_back
+client.background       $text_white
 
 #AutoStart
 exec --no-startup-id redshift -l 18.007202:79.558296
-exec picom -f --experimental-backends --config /home/mivin/.config/picom/picom.conf
-exec --no-startup-id lxpolkit
-exec_always feh --bg-fill /home/mivin/setup/Wallpapers/punk.jpg
+exec_always feh --bg-fill /home/mivin/Setup/Wallpapers/punk.jpg
 exec bitwarden
 exec firefox
 exec pavucontrol
 exec librewolf
-exec termite
+exec kitty
 exec --no-startup-id autorandr --change
 exec --no-startup-id nextcloud
-exec --no-startup-id nm-applet
-exec --no-startup-id caffeine
-
-#onedrive mount
-exec sh -c "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
+#exec --no-startup-id nm-applet
+#exec --no-startup-id caffeine
 
 #My Shortcuts
 bindsym $mod+Ctrl+s     exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+e          exec raiseorlaunch -c Thunar
-bindsym $mod+x          exec raiseorlaunch -c Termite -w "5:  "
+bindsym $mod+x          exec raiseorlaunch -c kitty -w "5:  "
 bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4: ﬏ "
 bindsym $mod+s          exec raiseorlaunch -c Spotify -w "10: 阮 "
-bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
+bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
 bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2:  "
-bindsym $mod+m		exec raiseorlaunch -c VirtualBox -w "3:  "
+bindsym $mod+m		exec raiseorlaunch -c Vmware -w "3:  "
 bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app -w "6:  "
 bindsym $mod+y          exec raiseorlaunch -c FreeTube -w "7:  "
 bindsym $mod+g          exec raiseorlaunch -c discord -w "8:  "

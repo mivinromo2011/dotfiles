@@ -1,10 +1,10 @@
 export ZSH="/home/mivin/.oh-my-zsh"
-ZSH_THEME="agnoster"
+ZSH_THEME="jreese"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-alias ls="ls -lh --color"
-alias la="ls -lah --color"
+alias ls="exa -lh"
+alias la="exa -lah"
 alias hclone="git clone https://github.com/"
 alias sclone="git clone git@github.com:"
 alias push="git push"
@@ -18,8 +18,8 @@ alias ghidra="/home/mivin/Tools/ghidra_9.2.3_PUBLIC/ghidraRun"
 alias sqlmap="python3 /home/mivin/Tools/sqlmap-dev"
 alias dirbuster="java -jar /home/mivin/Tools/DirBuster-0.12/DirBuster-0.12.jar"
 alias sherlock="python3 /home/mivin/Tools/sherlock/sherlock/sherlock.py"
-##alias cleanup="paru -R `paru -Qqdt`"
-##alias upd="paru -Syu"
+alias cleanup="paru -R `paru -Qqdt`"
+alias upd="paru -Syu"
 
 eval "$(ssh-agent)"
 ssh-add -q ~/.ssh/github
