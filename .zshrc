@@ -1,5 +1,5 @@
 export ZSH="/home/mivin/.oh-my-zsh"
-ZSH_THEME="jreese"
+ZSH_THEME="risto"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 

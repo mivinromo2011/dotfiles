@@ -1,12 +1,7 @@
 
-xmonad.hs:67:12: error:
-    Variable not in scope: xF86XK_AudioRaiseVolume :: KeySym
-   |
-67 |     , ((0, xF86XK_AudioRaiseVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
-   |            ^^^^^^^^^^^^^^^^^^^^^^^
-
-xmonad.hs:68:12: error:
-    Variable not in scope: xF86XK_AudioLowerVolume :: KeySym
-   |
-68 |     , ((0, xF86XK_AudioLowerVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
-   |            ^^^^^^^^^^^^^^^^^^^^^^^
+xmonad.hs:181:16: warning: [-Wdeprecations]
+    In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
+    Deprecated: "Use spacingRaw instead."
+    |
+181 |      tiled   = spacing 5 $ Tall nmaster delta ratio
+    |                ^^^^^^^

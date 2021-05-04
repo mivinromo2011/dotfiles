@@ -22,7 +22,7 @@ spawnToWorkspace program workspace = do
                                     spawn program
                                      
 
-myWorkspaces = ["1: Librewolf", "2: Firefox", "3: VirtLab", "4: Notion","5: Code", "6: News", "7: Meeting", "8: Stream", "9: Music", "10: Chat"] ++ map show [11..17]
+myWorkspaces = ["1", "2", "3", "4n","5", "6", "7g", "8", "9", "10"] ++ map show [11..17]
 altMask = mod1Mask
 main = do
     xmproc <- spawnPipe "xmobar /home/mivin/.config/xmobar/xmobarrc"
@@ -47,44 +47,18 @@ main = do
         }
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-
-    -- launch a terminal
-    [ ((modm,               xK_x     ), spawn "terminator")
-
-    -- launch dmenu
-    , ((modm,               xK_d     ), spawn "rofi -show drun -show-icons")
-
-    -- launch arandr
+    [ ((modm,               xK_x     ), spawn "kitty")
+    , ((modm,               xK_d     ), spawn "dmenu_run -fn 'Noto Sans-14'")
     , ((modm,               xK_p     ), spawn "arandr")
-
-    -- launch LibreWolf
-    , ((modm,               xK_b     ), spawnOn "1:Librewolf" "librewolf")
-
-    -- launch Sublime
-    , ((modm,               xK_c     ), spawn "subl")
-
-    -- launch Virtmanager
-    , ((modm,               xK_v     ), spawnToWorkspace "virt-manager" "3:VirtLab" )
-
-    -- launch pcmanfm
+    , ((modm,               xK_b     ), spawn "librewolf")
+    , ((modm,               xK_c     ), spawn "code")
+    , ((modm,               xK_v     ), spawn "vmware" )
     , ((modm,               xK_e     ), spawn "pcmanfm")
-    
-    -- launch Bitwarden
     , ((modm .|. shiftMask, xK_z     ), spawn "bitwarden")
-
-    -- launch Spotify
-    , ((modm .|. shiftMask, xK_x     ), spawnOn "9:Music" "spotify")
-
-    -- launch FireFox
-    , ((modm .|. shiftMask, xK_b     ), spawnOn "2:Firefox" "firefox")
-
-    -- launch Flameshot
+    , ((modm .|. shiftMask, xK_x     ), spawn "spotify")
+    , ((modm .|. shiftMask, xK_b     ), spawn "firefox")
     , ((modm,               xK_z     ), spawn "flameshot gui")
-
-    -- close focused window
     , ((modm,               xK_q     ), kill)
-
-    --hotkeys
     , ((0, xF86XK_AudioRaiseVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
     , ((0, xF86XK_AudioLowerVolume         ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
     , ((0, xF86XK_AudioMute                ), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
@@ -170,9 +144,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 myStartupHook = do
-            spawnOnce "nitrogen --restore"
-            spawnOnce "picom -f --config ~/.config/picom/picom.conf"
-            spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+            spawnOnce "feh --bg-fill /home/mivin/Setup/Wallpapers/punk_city.jpg"
+            spawnOnce "redshift -l 18.007202:79.558296"
             spawnOnce "autorandr -c"
             spawnOnce "rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College"
             spawnOnce "bitwarden"
@@ -190,7 +163,7 @@ myManageHook = composeAll
     , resource  =? "desktop_window"                 --> doIgnore
     , className =? "LibreWolf"                      --> doShift "1" 
     , className =? "firefox"                        --> doShift "2" 
-    , className =? "Virt-manager"                   --> doShift "3" 
+    , className =? "Vmware"                         --> doShift "3" 
     , className =? "Notion"                         --> doShift "4"
     , className =? "Com.gitlab.newsflash"           --> doShift "6" 
     , className =? "Microsoft Teams - Preview"      --> doShift "7" 

@@ -92,11 +92,11 @@ set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4: ﬏ "
 set $ws5 "5:  "
-set $ws6 "6:  "
+set $ws6 "6: 阮 "
 set $ws7 "7:  "
 set $ws8 "8:  "
 set $ws9 "9:  "
-set $ws10 "10: 阮 "
+set $ws10 "10:  "
 set $ws11 "11: S1 "
 set $ws12 "12: S2 "
 set $Ws13 "13: S3 "
@@ -110,16 +110,16 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3 ; layout tabbed
 bindsym $mod+4 workspace number $ws4 ; layout tabbed
 bindsym $mod+5 workspace number $ws5
-bindsym $mod2+1 workspace number $ws6
-bindsym $mod2+2 workspace number $ws7
-bindsym $mod2+3 workspace number $ws8 ; layout tabbed
-bindsym $mod2+4 workspace number $ws9
-bindsym $mod2+5 workspace number $ws10
-bindsym $mod+6 workspace number $ws11
-bindsym $mod+7 workspace number $ws12
-bindsym $mod+8 workspace number $ws13
-bindsym $mod+9 workspace number $ws14
-bindsym $mod+0 workspace number $ws15
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8 ; layout tabbed
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod2+1 workspace number $ws11
+bindsym $mod2+2 workspace number $ws12
+bindsym $mod2+3 workspace number $ws13
+bindsym $mod2+4 workspace number $ws14
+bindsym $mod2+5 workspace number $ws15
 
 
 # move focused container to workspace
@@ -128,16 +128,16 @@ bindsym $mod+Shift+2 move container to workspace number $ws2 ; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; layout tabbed
 bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
-bindsym $mod2+Shift+1 move container to workspace number $ws6 ; workspace $ws6
-bindsym $mod2+Shift+2 move container to workspace number $ws7 ; workspace $ws7
-bindsym $mod2+Shift+3 move container to workspace number $ws8 ; workspace $ws8 ; layout tabbed
-bindsym $mod2+Shift+4 move container to workspace number $ws9 ; workspace $ws9
-bindsym $mod2+Shift+5 move container to workspace number $ws10 ; workspace $ws10
-bindsym $mod+Shift+6 move container to workspace number $ws11 ; workspace $ws11
-bindsym $mod+Shift+7 move container to workspace number $ws12 ; workspace $ws12
-bindsym $mod+Shift+8 move container to workspace number $ws13 ; workspace $ws13
-bindsym $mod+Shift+9 move container to workspace number $ws14 ; workspace $ws14
-bindsym $mod+Shift+0 move container to workspace number $ws15 ; workspace $ws15
+bindsym $mod+Shift+6 move container to workspace number $ws6 ; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7 ; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8 ; workspace $ws8 ; layout tabbed
+bindsym $mod+Shift+9 move container to workspace number $ws9 ; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10 ; workspace $ws10
+bindsym $mod2+Shift+1 move container to workspace number $ws11 ; workspace $ws11
+bindsym $mod2+Shift+2 move container to workspace number $ws12 ; workspace $ws12
+bindsym $mod2+Shift+3 move container to workspace number $ws13 ; workspace $ws13
+bindsym $mod2+Shift+4 move container to workspace number $ws14 ; workspace $ws14
+bindsym $mod2+Shift+5 move container to workspace number $ws15 ; workspace $ws15
 
 
 #window Resize
@@ -148,14 +148,16 @@ bindsym $mod2+Down    resize shrink height 10 px or 10 ppt
 
 #Assigning workspaces to screens
 workspace $ws1 output primary
-workspace $ws2 output primary
+workspace $ws2 output HDMI1
 workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
-workspace $ws7 output eDP1
-workspace $ws8 output eDP1
-workspace $ws9 output eDP1
-workspace $ws10 output eDP1
+workspace $ws6 output HDMI1
+workspace $ws7 output HDMI1
+workspace $ws8 output HDMI1
+workspace $ws9 output HDMI1
+workspace $ws10 output HDMI1
+
 
 #Workspace rules
 for_window [class="LibreWolf"] move to workspace $ws1
@@ -164,12 +166,11 @@ for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
 for_window [class="code-oss"] move to workspace $ws4
 for_window [class="kitty"] move to workspace $ws5
-for_window [class="Notion"] move to workspace $ws6
+for_window [class="Spotify"] move to workspace $ws6
 for_window [class="FreeTube"] move to workspace $ws7
 for_window [class=discord|Ferdi] move to workspace $ws8
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws8
-for_window [class="Transmission"] move to workspace $ws9
-for_window [class="Spotify"] move to workspace $ws10
+for_window [class="Transmission-gtk"] move to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -202,49 +203,49 @@ bar {
                 separator  $text_white
 
                 #                  border       backgr       text   
-                focused_workspace  $light_black $blue_highl  $text_white
-                active_workspace   $light_black $grey_back   $text_white
-                inactive_workspace $dark_black  $light_black $text_white
-                urgent_workspace   $dark_black  $red_urg     $text_white
-                binding_mode       $dark_black  $red_urg     $text_white
+                focused_workspace  $black_back  $black_back  $blue_highl
+                active_workspace   $black_back  $black_back  $text_white
+                inactive_workspace $black_back  $black_back  $grey_back
+                urgent_workspace   $black_back  $black_back  $red_urg
+                binding_mode       $black_back  $red_urg     $text_white
         }
 }
 
 #Window colours         border          backgr.         text            indicator       child_border
 client.focused          $dark_black     $blue_highl     $text_white     $green_highl    $blue_highl
-client.focused_inactive $dark_black     $black_back      $text_white     $green_highl    $blue_highl
+client.focused_inactive $dark_black     $black_back     $text_white     $green_highl    $text_white
 client.unfocused        $dark_black     $grey_back      $black_back     $green_highl    $grey_back
-client.urgent           $red_urg        $red_urg        $text_white     $green_highl    $grey_back
-client.placeholder      $black_back     $grey_back      $text_white     $green_highl    $grey_back
+client.urgent           $dark_black     $red_urg        $text_white     $green_highl    $grey_back
+client.placeholder      $dark_black     $grey_back      $text_white     $green_highl    $grey_back
 client.background       $text_white
 
 #AutoStart
+exec rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College
 exec --no-startup-id redshift -l 18.007202:79.558296
-exec_always feh --bg-fill /home/mivin/Setup/Wallpapers/punk.jpg
+exec_always feh --bg-fill /home/mivin/Setup/Wallpapers/punk_city.jpg
 exec bitwarden
 exec firefox
 exec pavucontrol
 exec librewolf
 exec kitty
 exec --no-startup-id autorandr --change
-exec --no-startup-id nextcloud
 #exec --no-startup-id nm-applet
 #exec --no-startup-id caffeine
 
 #My Shortcuts
 bindsym $mod+Ctrl+s     exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
-bindsym $mod+e          exec raiseorlaunch -c Thunar
+bindsym $mod+e          exec raiseorlaunch -c Pcmanfm
 bindsym $mod+x          exec raiseorlaunch -c kitty -w "5:  "
 bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4: ﬏ "
-bindsym $mod+s          exec raiseorlaunch -c Spotify -w "10: 阮 "
+bindsym $mod+s          exec raiseorlaunch -c Spotify -w "6: 阮 "
 bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
 bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2:  "
-bindsym $mod+m		exec raiseorlaunch -c Vmware -w "3:  "
-bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app -w "6:  "
+bindsym $mod+m		exec raiseorlaunch -c VirtualBox -w "3:  "
+bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app
 bindsym $mod+y          exec raiseorlaunch -c FreeTube -w "7:  "
 bindsym $mod+g          exec raiseorlaunch -c discord -w "8:  "
-bindsym $mod+t          exec raiseorlaunch -c Transmission-gtk -r
+bindsym $mod+t          exec raiseorlaunch -c Transmission-gtk -w "10:  "
 bindsym $mod2+z         exec raiseorlaunch -c Bitwarden -r
 bindsym $mod2+v         exec raiseorlaunch -c Pavucontrol -r 
 
@@ -252,7 +253,7 @@ bindsym $mod2+v         exec raiseorlaunch -c Pavucontrol -r
 bindsym $mod+Shift+s    sticky toggle
 
 #Screen Lock
-bindsym $mod+Ctrl+l exec dm-tool lock
+bindsym $mod+Ctrl+l exec i3lock -c 000000
 
 # Sreen brightness controls
 bindsym $mod2+Ctrl+w exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+13 i3blocks
@@ -276,7 +277,7 @@ bindsym $mod+Ctrl+2 move workspace to output eDP1
 #Scratchpads
 bindsym $mod+backslash scratchpad show
 bindsym $mod+Shift+backslash move scratchpad
-for_window [class=Bitwarden|Transmission-gtk|Pavucontrol] move scratchpad
+for_window [class=Bitwarden|Pavucontrol] move scratchpad
 
 #window rules
 for_window [class=Galculator|feh|Lxappearance|qpdfview|vlc|Galculator] floating enable
