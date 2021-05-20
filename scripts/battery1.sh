@@ -15,16 +15,16 @@ elif [[ "${BATTERY_POWER}" -gt 0 ]]; then
     BATTERY_ICON=""
 fi
 if [[ "${BATTERY_STATE}" = "Discharging" ]]; then
-    echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
-    echo " ${BATTERY_ICON} ${BATTERY_POWER}%"
-    echo "${get_xres text_white:}"
+    echo "${BATTERY_ICON} ${BATTERY_POWER}% "
+    echo "${BATTERY_ICON} ${BATTERY_POWER}% "
+    echo "#ffff00"
     echo "${get_xres dark_black:}"
     echo "${get_xres dark_black:}"
     echo ""
 else
-    echo "  ${BATTERY_POWER}%"
-    echo "  ${BATTERY_POWER}%"
-    echo "${get_xres text_white:}"
+    echo " ${BATTERY_POWER}% "
+    echo " ${BATTERY_POWER}% "
+    echo "#00ff7f"
     echo "${get_xres dark_black:}"
     echo "${get_xres dark_black:}"
     echo ""

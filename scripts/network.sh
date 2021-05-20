@@ -8,12 +8,12 @@ esac
 
 if [[ "$iface"=="wlo1" ]]; then
 	if [[ $(iw wlo1 info | grep ssid) ]]; then
-		echo "  $(iw wlo1 info | awk '/ssid/ {$1=""; print $0}')";
+		echo " $(iw wlo1 info | awk '/ssid/ {$1=""; print $0}')";
 	else
 		if [[ $(ip route | grep default) ]]; then
-			echo "  Wired";
+			echo " Wired";
 		else
-			echo "  Disconnected";
+			echo " Disconnected";
 		fi
 	fi
 fi

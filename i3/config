@@ -32,7 +32,8 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # start rofi-menu
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Noto Sans-14'
+bindsym $mod+d exec --no-startup-id rofi -show drun -font "DejaVu Sans 16"
+bindsym $mod2+Tab exec --no-startup-id rofi -show window -font "DejaVu Sans 16"
 
 # change focus
 bindsym $mod+j focus left
@@ -87,22 +88,19 @@ bindsym $mod+a focus parent
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspaces
-set $ws1 "1:  "
+set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
-set $ws4 "4: ﬏ "
-set $ws5 "5:  "
-set $ws6 "6: 阮 "
-set $ws7 "7:  "
-set $ws8 "8:  "
-set $ws9 "9:  "
-set $ws10 "10:  "
-set $ws11 "11: S1 "
-set $ws12 "12: S2 "
-set $Ws13 "13: S3 "
-set $Ws14 "14: S4 "
-set $Ws15 "15: S5 "
-
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
+set $spotify "11: 阮 "
+set $read "12:  "
+set $youtube "13:  "
+set $downloads "14:  "
+set $teams "15:  "
+set $code "7: ﱦ "
+set $notes "6: ﴬ "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -111,16 +109,6 @@ bindsym $mod+3 workspace number $ws3 ; layout tabbed
 bindsym $mod+4 workspace number $ws4 ; layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8 ; layout tabbed
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-bindsym $mod2+1 workspace number $ws11
-bindsym $mod2+2 workspace number $ws12
-bindsym $mod2+3 workspace number $ws13
-bindsym $mod2+4 workspace number $ws14
-bindsym $mod2+5 workspace number $ws15
-
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace $ws1
@@ -129,16 +117,6 @@ bindsym $mod+Shift+3 move container to workspace number $ws3 ; workspace $ws3 ; 
 bindsym $mod+Shift+4 move container to workspace number $ws4 ; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5 ; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6 ; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7 ; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8 ; workspace $ws8 ; layout tabbed
-bindsym $mod+Shift+9 move container to workspace number $ws9 ; workspace $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10 ; workspace $ws10
-bindsym $mod2+Shift+1 move container to workspace number $ws11 ; workspace $ws11
-bindsym $mod2+Shift+2 move container to workspace number $ws12 ; workspace $ws12
-bindsym $mod2+Shift+3 move container to workspace number $ws13 ; workspace $ws13
-bindsym $mod2+Shift+4 move container to workspace number $ws14 ; workspace $ws14
-bindsym $mod2+Shift+5 move container to workspace number $ws15 ; workspace $ws15
-
 
 #window Resize
 bindsym $mod2+Left    resize grow width 10 px or 10 ppt
@@ -148,15 +126,11 @@ bindsym $mod2+Down    resize shrink height 10 px or 10 ppt
 
 #Assigning workspaces to screens
 workspace $ws1 output primary
-workspace $ws2 output HDMI1
 workspace $ws3 output primary
-workspace $ws4 output primary
-workspace $ws5 output primary
-workspace $ws6 output HDMI1
-workspace $ws7 output HDMI1
-workspace $ws8 output HDMI1
-workspace $ws9 output HDMI1
-workspace $ws10 output HDMI1
+workspace $ws4 output eDP1
+workspace $downloads output eDP1
+workspace $spotify output eDP1
+workspace $read output eDP1
 
 
 #Workspace rules
@@ -164,13 +138,13 @@ for_window [class="LibreWolf"] move to workspace $ws1
 for_window [class="firefox"] move to workspace $ws2
 for_window [class="VirtualBox Manager"] move to workspace $ws3
 for_window [class="VirtualBox Machine"] move to workspace $ws3
-for_window [class="code-oss"] move to workspace $ws4
-for_window [class="kitty"] move to workspace $ws5
-for_window [class="Spotify"] move to workspace $ws6
-for_window [class="FreeTube"] move to workspace $ws7
-for_window [class=discord|Ferdi] move to workspace $ws8
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws8
-for_window [class="Transmission-gtk"] move to workspace $ws10
+for_window [class=discord|Ferdi] move to workspace $ws4
+for_window [class="Spotify"] move to workspace $spotify
+for_window [class="Microsoft Teams - Preview"] move to workspace $teams
+for_window [class="FreeTube"] move to workspace $youtube
+for_window [class="Atom"] move to workspace $code
+for_window [class="Transmission-gtk"] move to workspace $downloads
+for_window [class="Notion"] move to workspace $notes
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -179,15 +153,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -f hack -t warning -m 'Power Menu' -b 'ShutDown' 'systemctl poweroff' -b 'Restart' 'systemctl reboot' -B 'Logout' 'i3-msg exit'"
 bindsym $mod+Shift+c exec "i3-nagbar -f hack -t warning -m 'Control Panel' -b 'Edit Config' 'code ~/.config/i3/config' -B 'Volume Contorl' 'raiseorlaunch -c Pavucontrol -r' -B 'Appearance' 'raiseorlaunch -c Lxappearance'"
-
-set_from_resource $black_back   black_back
-set_from_resource $grey_back    grey_back
-set_from_resource $blue_highl   blue_highl
-set_from_resource $red_urg      red_urg
-set_from_resource $text_white   text_white
-set_from_resource $green_highl  green_highl
-set_from_resource $dark_black   dark_black
-set_from_resource $light_black  light_black
 
 bar {
  	position top
@@ -198,56 +163,39 @@ bar {
         workspace_min_width 50
         height 28
         colors{
-                background $black_back
-                statusline $text_white
-                separator  $text_white
-
-                #                  border       backgr       text   
-                focused_workspace  $black_back  $black_back  $blue_highl
-                active_workspace   $black_back  $black_back  $text_white
-                inactive_workspace $black_back  $black_back  $grey_back
-                urgent_workspace   $black_back  $black_back  $red_urg
-                binding_mode       $black_back  $red_urg     $text_white
+                background #2d2d2d
         }
 }
-
-#Window colours         border          backgr.         text            indicator       child_border
-client.focused          $dark_black     $blue_highl     $text_white     $green_highl    $blue_highl
-client.focused_inactive $dark_black     $black_back     $text_white     $green_highl    $text_white
-client.unfocused        $dark_black     $grey_back      $black_back     $green_highl    $grey_back
-client.urgent           $dark_black     $red_urg        $text_white     $green_highl    $grey_back
-client.placeholder      $dark_black     $grey_back      $text_white     $green_highl    $grey_back
-client.background       $text_white
 
 #AutoStart
 exec rclone --vfs-cache-mode writes mount \"College-OneDrive\":  ~/College
 exec --no-startup-id redshift -l 18.007202:79.558296
-exec_always feh --bg-fill /home/mivin/Setup/Wallpapers/punk_city.jpg
+exec_always --no-startup-id feh --bg-fill /home/mivin/Setup/Wallpapers/mount2.jpg
 exec bitwarden
 exec firefox
 exec pavucontrol
 exec librewolf
-exec kitty
+exec ferdi
 exec --no-startup-id autorandr --change
-#exec --no-startup-id nm-applet
-#exec --no-startup-id caffeine
 
 #My Shortcuts
 bindsym $mod+Ctrl+s     exec sh -c 'autorandr --change'
 bindsym $mod+z          exec flameshot gui
 bindsym $mod+e          exec raiseorlaunch -c Pcmanfm
-bindsym $mod+x          exec raiseorlaunch -c kitty -w "5:  "
-bindsym $mod+c          exec raiseorlaunch -c code-oss -w "4: ﬏ "
-bindsym $mod+s          exec raiseorlaunch -c Spotify -w "6: 阮 "
-bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
+bindsym $mod+x          exec kitty
+bindsym $mod+s          exec raiseorlaunch -c Spotify -w "11: 阮 "
+bindsym $mod+b         	exec raiseorlaunch -c LibreWolf -w "1:  "
 bindsym $mod2+b         exec raiseorlaunch -c firefox -w "2:  "
-bindsym $mod+m		exec raiseorlaunch -c VirtualBox -w "3:  "
-bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app
-bindsym $mod+y          exec raiseorlaunch -c FreeTube -w "7:  "
-bindsym $mod+g          exec raiseorlaunch -c discord -w "8:  "
-bindsym $mod+t          exec raiseorlaunch -c Transmission-gtk -w "10:  "
+bindsym $mod+m		      exec raiseorlaunch -c VirtualBox -w "3:  "
+bindsym $mod+n          exec raiseorlaunch -c Notion -e notion-app -w "6: ﴬ "
+bindsym $mod+y          exec raiseorlaunch -c FreeTube -w "13:  "
+bindsym $mod+g          exec raiseorlaunch -c discord -w "4:  "
+bindsym $mod+r		      exec raiseorlaunch -c Newsflash -w "12:  "
+bindsym $mod+t          exec raiseorlaunch -c Transmission-gtk -w "14:  "
 bindsym $mod2+z         exec raiseorlaunch -c Bitwarden -r
-bindsym $mod2+v         exec raiseorlaunch -c Pavucontrol -r 
+bindsym $mod2+v         exec raiseorlaunch -c Pavucontrol -r
+bindsym $mod2+space     exec "i3-input -F 'workspace %s;exec %s' -P 'Enter APP NAME : ' -f DejaVu Sans"
+bindsym $mod+c          exec raiseorlaunch -c Atom -w "7: ﱦ "
 
 #Toggling Sticky keys
 bindsym $mod+Shift+s    sticky toggle
@@ -263,7 +211,7 @@ bindsym $mod2+Ctrl+s exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+13 
 bindsym $mod2+w                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 bindsym $mod2+s                 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
 bindsym $mod2+Shift+s           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMicMute       exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMicMute        exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
 #Media
 bindsym $mod2+x exec playerctl play-pause && pkill -RTMIN+19 i3blocks
@@ -285,3 +233,4 @@ for_window [class="VirtualBox Machine"] layout tabbed
 for_window [class="Sxiv"] floating enable resize 800 600
 for_window [class=Galculator|vlc|Bitwarden|Pavucontrol] sticky enable
 for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="Microsoft Teams Notification"] move to workspace $teams
