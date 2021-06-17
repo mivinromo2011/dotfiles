@@ -1,0 +1,9 @@
+ Microsoft.Xbox.TCUI_8wekyb3d8bbwe                          1.24.10001.0
+Xbox Console Companion           Microsoft.XboxApp_8wekyb3d8bbwe                            48.76.8001.0
+Xbox Game Bar Plugin             Microsoft.XboxGameOverlay_8wekyb3d8bbwe                    1.54.4001.0
+Xbox Game Bar                    Microsoft.XboxGamingOverlay_8wekyb3d8bbwe                  5.621.4222.0
+Xbox Identity Provider           Microsoft.XboxIdentityProvider_8wekyb3d8bbwe               12.67.21001.0
+Xbox Game Speech Window          Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe            1.21.13002.0
+Your Phone                       Microsoft.YourPhone_8wekyb3d8bbwe
+ Microsoft.YourPhone_8wekyb3d8bbwe
+  Microsoft.Windows.Photos_8wekyb3d8bbwe
